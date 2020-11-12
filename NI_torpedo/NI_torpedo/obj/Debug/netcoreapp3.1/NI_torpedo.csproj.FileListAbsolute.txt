@@ -17,3 +17,5 @@ D:\c#\projekt\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.csproj.Co
 D:\c#\projekt\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.dll
 D:\c#\projekt\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.pdb
 D:\c#\projekt\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.genruntimeconfig.cache
+D:\c#\projekt\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NameWindow.g.cs
+D:\c#\projekt\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NameWindow.baml
