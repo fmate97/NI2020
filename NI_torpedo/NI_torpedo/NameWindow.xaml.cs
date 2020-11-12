@@ -38,6 +38,8 @@ namespace NI_torpedo
                 _secondName = textBox.Text;
                 this.Close();
             }
+            GameWindow gameWindow = new GameWindow(_firstName);
+            gameWindow.Show();
         }
 
     }

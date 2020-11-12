@@ -1,0 +1,18 @@
+﻿<Window x:Class="NI_torpedo.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NI_torpedo"
+        mc:Ignorable="d"
+        Title="Torpedo" Height="450" Width="800">
+    <StackPanel>
+        <Label x:Name="nevLabel" Width="200" Height="30" HorizontalAlignment="Left" />
+        <Label x:Name="egerPos" Width="200" Height="30" HorizontalAlignment="Left" />
+        <StackPanel Orientation="Horizontal">
+            <Canvas x:Name="masik_player_jatektabla" MouseLeftButtonDown="masik_player_jatektabla_MouseLeftButtonDown" Height="300" Width="300" Margin="25,0,25,0"/>
+            <Canvas x:Name="sajat_jatektabla" MouseLeftButtonDown="sajat_jatektabla_MouseLeftButtonDown" Height="300" Width="300"/>
+            <Label x:Name="eredmenyjelzo" Margin="50,0,0,0" Width="100"/>
+        </StackPanel>      
+    </StackPanel>
+</Window>
