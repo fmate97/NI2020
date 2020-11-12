@@ -21,5 +21,16 @@ namespace NI_torpedo
         {
             InitializeComponent();
         }
+
+
+        private void al_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void twoPlayer_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

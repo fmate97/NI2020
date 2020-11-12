@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NI_torpedo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="Torpedo" Height="300" Width="300">
+    <Grid RenderTransformOrigin="0.502,0.487">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="70,40,0,0" Text="Kivel szeretnél játszni?" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Grid.ColumnSpan="3"/>
+        <CheckBox x:Name="al" Content="Számítógép ellen" HorizontalAlignment="Left" Margin="25,96,0,0" VerticalAlignment="Top" Checked="al_Checked"/>
+        <CheckBox x:Name="twoPlayer" Content="Másik játékos ellen" HorizontalAlignment="Left" Margin="25,142,0,0" VerticalAlignment="Top" Checked="twoPlayer_Checked"/>
     </Grid>
 </Window>
