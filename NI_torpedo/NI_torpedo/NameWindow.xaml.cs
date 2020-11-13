@@ -12,17 +12,15 @@ using System.Windows.Shapes;
 
 namespace NI_torpedo
 {
-    /// <summary>
-    /// Interaction logic for NameWindow.xaml
-    /// </summary>
     public partial class NameWindow : Window
     {
-        private bool _name = true;
+        private bool _isTwoPlayer, _name = true;
         private string _firstName;
         private string _secondName;
-        public NameWindow()
+        public NameWindow(bool isTwoPlayer)
         {
             InitializeComponent();
+            _isTwoPlayer = isTwoPlayer;
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
@@ -38,7 +36,7 @@ namespace NI_torpedo
                 _secondName = textBox.Text;
                 this.Close();
             }
-            GameWindow gameWindow = new GameWindow(_firstName);
+            GameWindow gameWindow = new GameWindow(_isTwoPlayer, _firstName);
             gameWindow.Show();
         }
 

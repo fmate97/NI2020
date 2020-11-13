@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NI_torpedo"
         mc:Ignorable="d"
-        Title="Torpedo" Height="450" Width="800">
+        Title="Torpedo" Height="450" Width="1000" ResizeMode="CanMinimize"
+        Keyboard.KeyDown="Window_KeyDown" Keyboard.KeyUp="Window_KeyUp">
     <StackPanel>
+        <StackPanel>
+            
+        </StackPanel>
         <Label x:Name="nevLabel" Width="200" Height="30" HorizontalAlignment="Left" />
         <Label x:Name="egerPos" Width="200" Height="30" HorizontalAlignment="Left" />
         <StackPanel Orientation="Horizontal">
             <Canvas x:Name="masik_player_jatektabla" MouseLeftButtonDown="masik_player_jatektabla_MouseLeftButtonDown" Height="300" Width="300" Margin="25,0,25,0"/>
             <Canvas x:Name="sajat_jatektabla" MouseLeftButtonDown="sajat_jatektabla_MouseLeftButtonDown" Height="300" Width="300"/>
-            <Label x:Name="eredmenyjelzo" Margin="50,0,0,0" Width="100"/>
+            <Label x:Name="eredmenyjelzo" Margin="50,0,0,0"/>
         </StackPanel>      
     </StackPanel>
 </Window>
