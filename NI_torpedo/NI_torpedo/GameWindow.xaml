@@ -29,13 +29,34 @@
                     <Label Content="Ellenfél találatai:"/>
                     <Label Content="0" x:Name="ellenfel_talalatai"/>
                 </StackPanel>
+                <Label Content="Elsülyesztett:" />
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="2-es hajók:"/>
+                    <Label x:Name="hajo2" Content="0"/>
+                    <Label Content="/ 4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="3-as hajók:"/>
+                    <Label x:Name="hajo3" Content="0"/>
+                    <Label Content="/ 4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="4-es hajók:"/>
+                    <Label x:Name="hajo4" Content="0"/>
+                    <Label Content="/ 2"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="5-ös hajók:"/>
+                    <Label x:Name="hajo5" Content="0"/>
+                    <Label Content="/ 1"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
 
             <Button x:Name="sajat_jatektabla_mentes_button" Content="Mentés" Margin="350, 0, 50, 0" FontSize="16" FontWeight="Bold" Click="sajat_jatektabla_mentes_button_Click"/>
             <Button x:Name="sajat_jatektabla_torles_button" Content="Törlés" FontSize="16" FontWeight="Bold" Click="sajat_jatektabla_torles_button_Click"/>
-            <Button x:Name="help_button" Content="Sugó" Margin="50, 0, 50, 0" FontSize="16" FontWeight="Bold" Click="help_button_Click"/>
+            <Button x:Name="help_button" Content="Súgó" Margin="50, 0, 50, 0" FontSize="16" FontWeight="Bold" Click="help_button_Click"/>
         </StackPanel>
 
     </StackPanel>

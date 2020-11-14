@@ -12,6 +12,18 @@ using System.Windows.Shapes;
 
 namespace NI_torpedo
 {
+    class HajoEgyseg{
+        public Vector vector;
+        public bool talalt;
+
+        public HajoEgyseg(Vector vector, bool talalt)
+        {
+            this.vector = vector;
+            this.talalt = talalt;
+        }
+
+
+    }
     public partial class GameWindow : Window
     {
         Random rnd = new Random();
@@ -26,6 +38,12 @@ namespace NI_torpedo
         private int _jo_kockak_szama = 33;
         private bool _isTwoPlayer, _mentett_jatek = false, _player_jon = false;
         private int _korok_szam = 0, _sajat_talalat = 0, _ellenfel_talalat = 0, _player_number;
+
+        private List<List<HajoEgyseg>> hajok = new List<List<HajoEgyseg>>();
+        private int _hajo2 = 0;
+        private int _hajo3 = 0;
+        private int _hajo4 = 0;
+        private int _hajo5 = 0;
 
         public GameWindow(bool isTwoPlayer, string nev)
         {
@@ -59,7 +77,7 @@ namespace NI_torpedo
             var unitX = _tabla_szelessege / _tabla_merete;
             var unitY = _tabla_magassaga / _tabla_merete;
 
-            var shape = new Rectangle();            
+            var shape = new Rectangle();
             shape.Fill = Brushes.Black;
             shape.Width = unitX;
             shape.Height = unitY;
@@ -149,6 +167,7 @@ namespace NI_torpedo
                 else
                 {
                     _mentett_jatek = true;
+                    sajat_hajo_mentes();
                     start_game();
                 }
             }
@@ -163,6 +182,34 @@ namespace NI_torpedo
                     jatektabla_init(kocka, sajat_jatektabla);
                 }
                 _player_hajo_pos.Clear();
+            }
+        }
+
+        private void sajat_hajo_mentes()
+        {
+            List<Vector> seged = new List<Vector>();
+            seged = _random_hajo_pos;
+            int hajo_index=0;
+            bool keres = true;
+
+            hajok.Add(new List<HajoEgyseg>());
+            hajok[hajo_index].Add(new HajoEgyseg(seged[0], false));
+            hajo_index++;
+
+
+            for(int i=1; i< seged.Count; i++)
+            {
+                if (seged[i-1].Y == seged[i].Y  || seged[i].X == seged[i - 1].X )
+                { 
+                    hajok[hajo_index-1].Add(new HajoEgyseg(seged[i], false));
+                }
+                else
+                {
+                    hajok.Add(new List<HajoEgyseg>());
+                    hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
+                    hajo_index++;
+                }
+              
             }
         }
 
@@ -341,7 +388,13 @@ namespace NI_torpedo
             korok_szama.Content = _korok_szam;
             sajat_talalatok.Content = _sajat_talalat;
             ellenfel_talalatai.Content = _ellenfel_talalat;
+            hajo2.Content = _hajo2;
+            hajo3.Content = _hajo3;
+            hajo4.Content = _hajo4;
+            hajo5.Content = _hajo5;
         }
+
+
 
         private void jatektabla_setup(Vector position, Canvas canvas_name, Brush brush)
         {
@@ -356,6 +409,7 @@ namespace NI_torpedo
             Canvas.SetLeft(shape, position.X * unitX + (_margo_merete / 2));
             canvas_name.Children.Add(shape);
         }
+
 
         private void random_hajo_gen()
         {
@@ -539,6 +593,7 @@ namespace NI_torpedo
                     {
                         if (hajo_coord == eger_pos_vector)
                         {
+                            elem_talalt(eger_pos_vector);
                             _player_jo_tipp.Add(eger_pos_vector);
                             jatektabla_setup(eger_pos_vector, masik_player_jatektabla, Brushes.Green);
                             _sajat_talalat++;
@@ -558,6 +613,54 @@ namespace NI_torpedo
                     }
                     _player_jon = false;
                     game();
+                }
+            }
+        }
+
+        private void elem_talalt(Vector talalt)
+        {
+            HajoEgyseg seged = new HajoEgyseg(talalt, false);
+            for(int i=0; i<hajok.Count; i++)
+            {
+                for(int j=0; j<hajok[i].Count; j++)
+                {
+                    if (hajok[i][j].Equals(seged))
+                    {
+                        hajok[i][j].talalt = true;
+                        elsullyedt(i);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        private void elsullyedt(int i)
+        {
+            int db=0;
+            for(int j=0; j< hajok[i].Count; j++)
+            {
+                if(hajok[i][j].talalt== true)
+                {
+                    db++;
+                }
+            }
+            if(hajok[i].Count == db)
+            {
+                switch (db)
+                {
+                    case 2:
+                        _hajo2++;
+                        break;
+                    case 3:
+                        _hajo3++;
+                        break;
+                    case 4:
+                        _hajo4++;
+                        break;
+                    case 5:
+                        _hajo5++;
+                        break;
                 }
             }
         }
