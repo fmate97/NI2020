@@ -21,9 +21,8 @@ namespace NI_torpedo
             this.vector = vector;
             this.talalt = talalt;
         }
-
-
     }
+
     public partial class GameWindow : Window
     {
         Random rnd = new Random();
@@ -38,6 +37,10 @@ namespace NI_torpedo
         private int _jo_kockak_szama = 33;
         private bool _isTwoPlayer, _mentett_jatek = false, _player_jon = false;
         private int _korok_szam = 0, _sajat_talalat = 0, _ellenfel_talalat = 0, _player_number;
+        private int _kivalasztott_hajo_hossza = 0;
+        private bool _kivalasztott_hajo_fuggoleges = true;
+        private Canvas _canvas_nev_seged = new Canvas();
+        private int _elhelyezett_hajo_db = 0;
 
         private List<List<HajoEgyseg>> hajok = new List<List<HajoEgyseg>>();
         private int _hajo2 = 0;
@@ -54,10 +57,12 @@ namespace NI_torpedo
             tabla_kocka_helyzete_init();
             foreach (Vector kocka in _tabla_kocka_helyzete)
             {
-                jatektabla_init(kocka, sajat_jatektabla);
-                jatektabla_init(kocka, masik_player_jatektabla);
+                jatektabla_init(kocka, sajat_jatektabla, Brushes.White);
+                jatektabla_init(kocka, masik_player_jatektabla, Brushes.White);
             }
-            //eredmenyjelzo.Content = "Kérem helyezze fel a következő hajókat:" + '\n' + "1 x 5 egység hosszú" + '\n' + "2 x 4 egység hosszú" + '\n' + "4 x 3 egység hosszú" + '\n' + "4 x 2 egység hosszú";
+            hajok_elhelyezese.Visibility = Visibility.Visible;
+            eredmenyjelzo.Visibility = Visibility.Collapsed;
+            hajo_setup();
             random_hajo_gen();
         }
 
@@ -72,7 +77,7 @@ namespace NI_torpedo
             }
         }
 
-        private void jatektabla_init(Vector position, Canvas canvas_name)
+        private void jatektabla_init(Vector position, Canvas canvas_name, Brush brush)
         {
             var unitX = _tabla_szelessege / _tabla_merete;
             var unitY = _tabla_magassaga / _tabla_merete;
@@ -86,7 +91,7 @@ namespace NI_torpedo
             canvas_name.Children.Add(shape);
 
             var shape2 = new Rectangle();
-            shape2.Fill = Brushes.White;
+            shape2.Fill = brush;
             shape2.Width = unitX - _margo_merete;
             shape2.Height = unitY - _margo_merete;
             Canvas.SetTop(shape2, position.Y * unitY + (_margo_merete / 2));
@@ -160,13 +165,15 @@ namespace NI_torpedo
         {
             if (!_mentett_jatek)
             {
-                if (_player_hajo_pos.Count != _jo_kockak_szama)
+                if (_elhelyezett_hajo_db != _hajok_hossza.Length)
                 {
-                    MessageBox.Show("A hajók száma/hossza nem megfelelő!");
+                    MessageBox.Show("Nem helyezte le az összes hajót!");
                 }
                 else
                 {
                     _mentett_jatek = true;
+                    hajok_elhelyezese.Visibility = Visibility.Collapsed;
+                    eredmenyjelzo.Visibility = Visibility.Visible;
                     sajat_hajo_mentes();
                     start_game();
                 }
@@ -179,9 +186,153 @@ namespace NI_torpedo
             {
                 foreach (Vector kocka in _tabla_kocka_helyzete)
                 {
-                    jatektabla_init(kocka, sajat_jatektabla);
+                    jatektabla_init(kocka, sajat_jatektabla, Brushes.White);
                 }
                 _player_hajo_pos.Clear();
+                hajo_setup();
+                hajok_elhelyezese.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void hajok_elhelyezese_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            int Xunit = _tabla_szelessege / _tabla_merete, Yunit = _tabla_magassaga / _tabla_merete;
+            if (hajo21.Visibility == Visibility.Visible && e.GetPosition(hajo21).X >= 0 && e.GetPosition(hajo21).X < Xunit && e.GetPosition(hajo21).Y >= 0 && e.GetPosition(hajo21).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo21;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo22.Visibility == Visibility.Visible && e.GetPosition(hajo22).X >= 0 && e.GetPosition(hajo22).X < Xunit && e.GetPosition(hajo22).Y >= 0 && e.GetPosition(hajo22).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo22;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo23.Visibility == Visibility.Visible && e.GetPosition(hajo23).X >= 0 && e.GetPosition(hajo23).X < Xunit && e.GetPosition(hajo23).Y >= 0 && e.GetPosition(hajo23).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo23;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo24.Visibility == Visibility.Visible && e.GetPosition(hajo24).X >= 0 && e.GetPosition(hajo24).X < Xunit && e.GetPosition(hajo24).Y >= 0 && e.GetPosition(hajo24).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo24;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo31.Visibility == Visibility.Visible && e.GetPosition(hajo31).X >= 0 && e.GetPosition(hajo31).X < Xunit && e.GetPosition(hajo31).Y >= 0 && e.GetPosition(hajo31).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo31;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo32.Visibility == Visibility.Visible && e.GetPosition(hajo32).X >= 0 && e.GetPosition(hajo32).X < Xunit && e.GetPosition(hajo32).Y >= 0 && e.GetPosition(hajo32).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo32;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo33.Visibility == Visibility.Visible && e.GetPosition(hajo33).X >= 0 && e.GetPosition(hajo33).X < Xunit && e.GetPosition(hajo33).Y >= 0 && e.GetPosition(hajo33).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo33;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo34.Visibility == Visibility.Visible && e.GetPosition(hajo34).X >= 0 && e.GetPosition(hajo34).X < Xunit && e.GetPosition(hajo34).Y >= 0 && e.GetPosition(hajo34).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo34;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo41.Visibility == Visibility.Visible && e.GetPosition(hajo41).X >= 0 && e.GetPosition(hajo41).X < Xunit && e.GetPosition(hajo41).Y >= 0 && e.GetPosition(hajo41).Y < (4 * Yunit))
+            {
+                _canvas_nev_seged = hajo41;
+                _kivalasztott_hajo_hossza = 4;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo42.Visibility == Visibility.Visible && e.GetPosition(hajo42).X >= 0 && e.GetPosition(hajo42).X < Xunit && e.GetPosition(hajo42).Y >= 0 && e.GetPosition(hajo42).Y < (4 * Yunit))
+            {
+                _canvas_nev_seged = hajo42;
+                _kivalasztott_hajo_hossza = 4;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+            else if (hajo51.Visibility == Visibility.Visible && e.GetPosition(hajo51).X >= 0 && e.GetPosition(hajo51).X < Xunit && e.GetPosition(hajo51).Y >= 0 && e.GetPosition(hajo51).Y < (5 * Yunit))
+            {
+                _canvas_nev_seged = hajo51;
+                _kivalasztott_hajo_hossza = 5;
+                _kivalasztott_hajo_fuggoleges = true;
+            }
+        }
+
+        private void hajok_elhelyezese_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            int Xunit = _tabla_szelessege / _tabla_merete, Yunit = _tabla_magassaga / _tabla_merete;
+            if (hajo21.Visibility == Visibility.Visible && e.GetPosition(hajo21).X >= 0 && e.GetPosition(hajo21).X < Xunit && e.GetPosition(hajo21).Y >= 0 && e.GetPosition(hajo21).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo21;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo22.Visibility == Visibility.Visible && e.GetPosition(hajo22).X >= 0 && e.GetPosition(hajo22).X < Xunit && e.GetPosition(hajo22).Y >= 0 && e.GetPosition(hajo22).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo22;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo23.Visibility == Visibility.Visible && e.GetPosition(hajo23).X >= 0 && e.GetPosition(hajo23).X < Xunit && e.GetPosition(hajo23).Y >= 0 && e.GetPosition(hajo23).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo23;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo24.Visibility == Visibility.Visible && e.GetPosition(hajo24).X >= 0 && e.GetPosition(hajo24).X < Xunit && e.GetPosition(hajo24).Y >= 0 && e.GetPosition(hajo24).Y < (2 * Yunit))
+            {
+                _canvas_nev_seged = hajo24;
+                _kivalasztott_hajo_hossza = 2;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo31.Visibility == Visibility.Visible && e.GetPosition(hajo31).X >= 0 && e.GetPosition(hajo31).X < Xunit && e.GetPosition(hajo31).Y >= 0 && e.GetPosition(hajo31).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo31;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo32.Visibility == Visibility.Visible && e.GetPosition(hajo32).X >= 0 && e.GetPosition(hajo32).X < Xunit && e.GetPosition(hajo32).Y >= 0 && e.GetPosition(hajo32).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo32;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo33.Visibility == Visibility.Visible && e.GetPosition(hajo33).X >= 0 && e.GetPosition(hajo33).X < Xunit && e.GetPosition(hajo33).Y >= 0 && e.GetPosition(hajo33).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo33;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo34.Visibility == Visibility.Visible && e.GetPosition(hajo34).X >= 0 && e.GetPosition(hajo34).X < Xunit && e.GetPosition(hajo34).Y >= 0 && e.GetPosition(hajo34).Y < (3 * Yunit))
+            {
+                _canvas_nev_seged = hajo34;
+                _kivalasztott_hajo_hossza = 3;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo41.Visibility == Visibility.Visible && e.GetPosition(hajo41).X >= 0 && e.GetPosition(hajo41).X < Xunit && e.GetPosition(hajo41).Y >= 0 && e.GetPosition(hajo41).Y < (4 * Yunit))
+            {
+                _canvas_nev_seged = hajo41;
+                _kivalasztott_hajo_hossza = 4;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo42.Visibility == Visibility.Visible && e.GetPosition(hajo42).X >= 0 && e.GetPosition(hajo42).X < Xunit && e.GetPosition(hajo42).Y >= 0 && e.GetPosition(hajo42).Y < (4 * Yunit))
+            {
+                _canvas_nev_seged = hajo42;
+                _kivalasztott_hajo_hossza = 4;
+                _kivalasztott_hajo_fuggoleges = false;
+            }
+            else if (hajo51.Visibility == Visibility.Visible && e.GetPosition(hajo51).X >= 0 && e.GetPosition(hajo51).X < Xunit && e.GetPosition(hajo51).Y >= 0 && e.GetPosition(hajo51).Y < (5 * Yunit))
+            {
+                _canvas_nev_seged = hajo51;
+                _kivalasztott_hajo_hossza = 5;
+                _kivalasztott_hajo_fuggoleges = false;
             }
         }
 
@@ -189,7 +340,7 @@ namespace NI_torpedo
         {
             List<Vector> seged = new List<Vector>();
             seged = _random_hajo_pos;
-            int hajo_index=0;
+            int hajo_index = 0;
             bool keres = true;
 
             hajok.Add(new List<HajoEgyseg>());
@@ -197,11 +348,11 @@ namespace NI_torpedo
             hajo_index++;
 
 
-            for(int i=1; i< seged.Count; i++)
+            for (int i = 1; i < seged.Count; i++)
             {
-                if (seged[i-1].Y == seged[i].Y  || seged[i].X == seged[i - 1].X )
-                { 
-                    hajok[hajo_index-1].Add(new HajoEgyseg(seged[i], false));
+                if (seged[i - 1].Y == seged[i].Y || seged[i].X == seged[i - 1].X)
+                {
+                    hajok[hajo_index - 1].Add(new HajoEgyseg(seged[i], false));
                 }
                 else
                 {
@@ -209,7 +360,7 @@ namespace NI_torpedo
                     hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
                     hajo_index++;
                 }
-              
+
             }
         }
 
@@ -221,15 +372,16 @@ namespace NI_torpedo
                 if (_player_number % 2 == 0)
                 {
                     _player_jon = true;
+                    _player_number++;
                     MessageBox.Show("Ön kezd!");
-                    _player_number++; 
+                    
                 }
                 else
                 {
                     _player_jon = false;
+                    _player_number++;
                     MessageBox.Show("Gép kezd!");
                     al_tipp(false);
-                    _player_number++;  
                 }
             }
         }
@@ -238,7 +390,7 @@ namespace NI_torpedo
         {
             _korok_szam++;
             eredmenyjelzo_update();
-            if(_player_number % 2 == 0) //player
+            if (_player_number % 2 == 0) //player
             {
                 MessageBox.Show("Ön jön!");
                 _player_number++;
@@ -255,7 +407,7 @@ namespace NI_torpedo
 
         private void al_tipp(bool elozo_talalat)
         {
-            if(!elozo_talalat)
+            if (!elozo_talalat)
             {
                 Vector tipp = new Vector(rnd.Next(_tabla_merete), rnd.Next(_tabla_merete));
                 bool ujra_general = true;
@@ -282,9 +434,9 @@ namespace NI_torpedo
                     }
                 }
                 bool sikeres_tipp_bool = false;
-                foreach(Vector hajo in _player_hajo_pos)
+                foreach (Vector hajo in _player_hajo_pos)
                 {
-                    if(hajo == tipp)
+                    if (hajo == tipp)
                     {
                         _ellenfel_talalat++;
                         jatektabla_setup(tipp, sajat_jatektabla, Brushes.Green);
@@ -358,7 +510,7 @@ namespace NI_torpedo
                         _sikeres_tipp = tipp;
                         _elozo_tipp_siker = true;
                         _al_jo_tipp.Add(tipp);
-                        if(_al_jo_tipp.Count == _jo_kockak_szama)
+                        if (_al_jo_tipp.Count == _jo_kockak_szama)
                         {
                             MessageBox.Show("Ön vesztett!");
                             game_end();
@@ -375,7 +527,7 @@ namespace NI_torpedo
             }
             game();
         }
-        
+
         private void game_end()
         {
             MainWindow window = new MainWindow();
@@ -384,7 +536,7 @@ namespace NI_torpedo
         }
 
         private void eredmenyjelzo_update()
-        { 
+        {
             korok_szama.Content = _korok_szam;
             sajat_talalatok.Content = _sajat_talalat;
             ellenfel_talalatai.Content = _ellenfel_talalat;
@@ -394,7 +546,63 @@ namespace NI_torpedo
             hajo5.Content = _hajo5;
         }
 
+        private void hajo_setup()
+        {
+            hajo21.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo21, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo21, Brushes.Blue);
 
+            hajo22.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo22, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo22, Brushes.Blue);
+
+            hajo23.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo23, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo23, Brushes.Blue);
+
+            hajo24.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo24, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo24, Brushes.Blue);
+
+            hajo31.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo31, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo31, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo31, Brushes.Blue);
+
+            hajo32.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo32, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo32, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo32, Brushes.Blue);
+
+            hajo33.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo33, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo33, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo33, Brushes.Blue);
+
+            hajo34.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo34, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo34, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo34, Brushes.Blue);
+
+            hajo41.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo41, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo41, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo41, Brushes.Blue);
+            jatektabla_init(new Vector(0, 3), hajo41, Brushes.Blue);
+
+            hajo42.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo42, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo42, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo42, Brushes.Blue);
+            jatektabla_init(new Vector(0, 3), hajo42, Brushes.Blue);
+
+            hajo51.Visibility = Visibility.Visible;
+            jatektabla_init(new Vector(0, 0), hajo51, Brushes.Blue);
+            jatektabla_init(new Vector(0, 1), hajo51, Brushes.Blue);
+            jatektabla_init(new Vector(0, 2), hajo51, Brushes.Blue);
+            jatektabla_init(new Vector(0, 3), hajo51, Brushes.Blue);
+            jatektabla_init(new Vector(0, 4), hajo51, Brushes.Blue);
+        }
 
         private void jatektabla_setup(Vector position, Canvas canvas_name, Brush brush)
         {
@@ -480,7 +688,7 @@ namespace NI_torpedo
                                 }
                                 break;
                             case 3:
-                                if (random_pos.X + hajo_hossza <= _tabla_merete - 1)
+                                if (random_pos.Y + hajo_hossza <= _tabla_merete - 1)
                                 {
                                     helyes_pos = true;
                                 }
@@ -556,9 +764,76 @@ namespace NI_torpedo
                 _y_coord_seged = 0;
                 Point eger_pos = e.GetPosition(sajat_jatektabla);
                 Vector eger_pos_vector = new Vector(coord_conv(eger_pos.X, _x_coord_seged) - 1, coord_conv(eger_pos.Y, _y_coord_seged) - 1);
-                jatektabla_setup(eger_pos_vector, sajat_jatektabla, Brushes.Blue);
-                _player_hajo_pos.Add(eger_pos_vector);
+
+                if (sajat_jatektabla_lehelyezheto(eger_pos_vector)) {
+                    for (int i = 0; i < _kivalasztott_hajo_hossza; i++)
+                    {
+                        if (_kivalasztott_hajo_fuggoleges)
+                        {
+                            jatektabla_setup(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i), sajat_jatektabla, Brushes.Blue);
+                            _player_hajo_pos.Add(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i));
+                        }
+                        else
+                        {
+                            jatektabla_setup(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y), sajat_jatektabla, Brushes.Blue);
+                            _player_hajo_pos.Add(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y));
+                        }
+                    }
+                    _canvas_nev_seged.Visibility = Visibility.Hidden;
+                    _kivalasztott_hajo_hossza = 0;
+                    _elhelyezett_hajo_db++;
+                }
+                else
+                {
+                    MessageBox.Show("Ide nem helyezhető le a hajó!");
+                }
             }
+        }
+
+        private bool sajat_jatektabla_lehelyezheto(Vector eger_pos_vector)
+        {
+            if (_kivalasztott_hajo_fuggoleges) 
+            {
+                foreach (Vector item in _player_hajo_pos)
+                {
+                    for (int i = 0; i < _kivalasztott_hajo_hossza; i++)
+                    {
+                        if (eger_pos_vector.X == item.X && eger_pos_vector.Y + i == item.Y)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                for(int i = 0; i < _kivalasztott_hajo_hossza; i++)
+                {
+                    if (eger_pos_vector.Y + i > _tabla_merete - 1)
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Vector item in _player_hajo_pos)
+                {
+                    for (int i = 0; i < _kivalasztott_hajo_hossza; i++)
+                    {
+                        if (eger_pos_vector.X + i == item.X && eger_pos_vector.Y == item.Y)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                for(int i= 0; i < _kivalasztott_hajo_hossza; i++) 
+                {
+                    if (eger_pos_vector.X + i > _tabla_merete - 1)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void masik_player_jatektabla_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
