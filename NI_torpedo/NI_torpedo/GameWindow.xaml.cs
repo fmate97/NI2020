@@ -41,6 +41,7 @@ namespace NI_torpedo
         private bool _kivalasztott_hajo_fuggoleges = true;
         private Canvas _canvas_nev_seged = new Canvas();
         private int _elhelyezett_hajo_db = 0;
+        private List<int> _sikeres_al_tip_seged = new List<int>();
 
         private List<List<HajoEgyseg>> hajok = new List<List<HajoEgyseg>>();
         private int _hajo2 = 0;
@@ -165,9 +166,9 @@ namespace NI_torpedo
         {
             if (!_mentett_jatek)
             {
-                if (_elhelyezett_hajo_db != _hajok_hossza.Length)
+                if (_elhelyezett_hajo_db <= _hajok_hossza.Length)
                 {
-                    MessageBox.Show("Nem helyezte le az összes hajót!");
+                    MessageBox.Show($"Nem helyezte le az összes hajót! Csak {_elhelyezett_hajo_db} db hajót helyezett le!");
                 }
                 else
                 {
@@ -188,6 +189,7 @@ namespace NI_torpedo
                 {
                     jatektabla_init(kocka, sajat_jatektabla, Brushes.White);
                 }
+                _elhelyezett_hajo_db = 0;
                 _player_hajo_pos.Clear();
                 hajo_setup();
                 hajok_elhelyezese.Visibility = Visibility.Visible;
@@ -407,6 +409,10 @@ namespace NI_torpedo
 
         private void al_tipp(bool elozo_talalat)
         {
+            if (lehelyezheto_tippek_szama() > 0)
+            {
+                elozo_talalat = true;
+            }
             if (!elozo_talalat)
             {
                 Vector tipp = new Vector(rnd.Next(_tabla_merete), rnd.Next(_tabla_merete));
@@ -455,7 +461,6 @@ namespace NI_torpedo
                 if (!sikeres_tipp_bool)
                 {
                     jatektabla_setup(tipp, sajat_jatektabla, Brushes.Red);
-                    _elozo_tipp_siker = false;
                     _al_rossz_tipp.Add(tipp);
                 }
             }
@@ -463,8 +468,9 @@ namespace NI_torpedo
             {
                 Vector tipp = new Vector(-1, -1);
                 bool sikeres_tipp_bool = false, ujra_general = false;
+                int irany = -1;
                 while (!(tipp.X >= 0 && tipp.X < _tabla_merete && tipp.Y >= 0 && tipp.Y < _tabla_merete && ujra_general)) {
-                    int irany = rnd.Next(4); // 0 - bal, 1 - fel, 2 - jobb, 3 - le
+                    irany = rnd.Next(4); // 0 - bal, 1 - fel, 2 - jobb, 3 - le
                     switch (irany)
                     {
                         case 0:
@@ -510,6 +516,7 @@ namespace NI_torpedo
                         _sikeres_tipp = tipp;
                         _elozo_tipp_siker = true;
                         _al_jo_tipp.Add(tipp);
+                        _sikeres_al_tip_seged.Clear();
                         if (_al_jo_tipp.Count == _jo_kockak_szama)
                         {
                             MessageBox.Show("Ön vesztett!");
@@ -522,10 +529,75 @@ namespace NI_torpedo
                 {
                     jatektabla_setup(tipp, sajat_jatektabla, Brushes.Red);
                     _elozo_tipp_siker = false;
+                    _sikeres_al_tip_seged.Add(irany);
                     _al_rossz_tipp.Add(tipp);
                 }
             }
             game();
+        }
+
+        private int lehelyezheto_tippek_szama()
+        {
+            int return_value = 0;
+
+            if(_sikeres_tipp.X > 0)
+            {
+                return_value++;
+            }
+            if(_sikeres_tipp.X < 9)
+            {
+                return_value++;
+            }
+            if(_sikeres_tipp.Y > 0)
+            {
+                return_value++;
+            }
+            if(_sikeres_tipp.Y < 9)
+            {
+                return_value++;
+            }
+
+            foreach(Vector item in _al_rossz_tipp)
+            {
+                if(item.X == _sikeres_tipp.X - 1 && item.Y == _sikeres_tipp.Y)
+                {
+                    return_value--;
+                }
+                else if(item.X == _sikeres_tipp.X + 1 && item.Y == _sikeres_tipp.Y)
+                {
+                    return_value--;
+                }
+                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y - 1)
+                {
+                    return_value--;
+                }
+                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y + 1)
+                {
+                    return_value--;
+                }
+            }
+
+            foreach (Vector item in _al_jo_tipp)
+            {
+                if (item.X == _sikeres_tipp.X - 1 && item.Y == _sikeres_tipp.Y)
+                {
+                    return_value--;
+                }
+                else if (item.X == _sikeres_tipp.X + 1 && item.Y == _sikeres_tipp.Y)
+                {
+                    return_value--;
+                }
+                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y - 1)
+                {
+                    return_value--;
+                }
+                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y + 1)
+                {
+                    return_value--;
+                }
+            }
+
+            return return_value;
         }
 
         private void game_end()
@@ -617,7 +689,6 @@ namespace NI_torpedo
             Canvas.SetLeft(shape, position.X * unitX + (_margo_merete / 2));
             canvas_name.Children.Add(shape);
         }
-
 
         private void random_hajo_gen()
         {
