@@ -132,6 +132,12 @@ namespace NI_torpedo
             }
         }
 
+        private void help_button_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
+
         private void sajat_jatektabla_mentes_button_Click(object sender, RoutedEventArgs e)
         {
             if (!_mentett_jatek)

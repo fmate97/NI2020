@@ -14,9 +14,8 @@ namespace NI_torpedo
 {
     public partial class NameWindow : Window
     {
-        private bool _isTwoPlayer, _name = true;
-        private string _firstName;
-        private string _secondName;
+        private bool _isTwoPlayer;
+        private string _name;
         public NameWindow(bool isTwoPlayer)
         {
             InitializeComponent();
@@ -25,19 +24,19 @@ namespace NI_torpedo
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            if (_name)
+
+            _name = textBox.Text;
+            if (_name.Length == 0)
             {
-                _firstName = textBox.Text;
-                _name = false;
-                this.Close();
+                MessageBox.Show("Nem írt nevet!");
             }
             else
             {
-                _secondName = textBox.Text;
                 this.Close();
+
+                GameWindow gameWindow = new GameWindow(_isTwoPlayer, _name);
+                gameWindow.Show();
             }
-            GameWindow gameWindow = new GameWindow(_isTwoPlayer, _firstName);
-            gameWindow.Show();
         }
 
     }

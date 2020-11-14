@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NI_torpedo"
         mc:Ignorable="d"
-        Title="Torpedo" Height="300" Width="300">
+        Title="Torpedo" Height="300" Width="300" ResizeMode="CanMinimize">
     <Grid>
         <Label x:Name="label" Content="Hogy hívnak?" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top"/>
 
