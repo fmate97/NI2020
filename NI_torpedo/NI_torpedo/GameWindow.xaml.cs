@@ -370,7 +370,6 @@ namespace NI_torpedo
             List<Vector> seged = new List<Vector>();
             seged = _random_hajo_pos;
             int hajo_index = 0;
-            bool keres = true;
 
             hajok.Add(new List<HajoEgyseg>());
             hajok[hajo_index].Add(new HajoEgyseg(seged[0], false));
@@ -459,7 +458,7 @@ namespace NI_torpedo
             }
         }
 
-        private void al_tipp(bool elozo_talalat, Vector sikeres_tipp_seged, out Vector return_value_seged)
+        public void al_tipp(bool elozo_talalat, Vector sikeres_tipp_seged, out Vector return_value_seged)
         {
             if (lehelyezheto_tippek_szama() > 0)
             {
