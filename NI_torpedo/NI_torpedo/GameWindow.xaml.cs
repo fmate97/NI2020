@@ -40,8 +40,8 @@ namespace NI_torpedo
         private int _kivalasztott_hajo_hossza = 0;
         private bool _kivalasztott_hajo_fuggoleges = true;
         private Canvas _canvas_nev_seged = new Canvas();
-        private int _elhelyezett_hajo_db = 0;
         private List<int> _sikeres_al_tip_seged = new List<int>();
+        private Vector return_value = new Vector(-1, -1);
 
         private List<List<HajoEgyseg>> hajok = new List<List<HajoEgyseg>>();
         private int _hajo2 = 0;
@@ -166,9 +166,9 @@ namespace NI_torpedo
         {
             if (!_mentett_jatek)
             {
-                if (_elhelyezett_hajo_db <= _hajok_hossza.Length)
+                if (!osszes_hajo_lehelyezve())
                 {
-                    MessageBox.Show($"Nem helyezte le az összes hajót! Csak {_elhelyezett_hajo_db} db hajót helyezett le!");
+                    MessageBox.Show("Nem helyezte le az összes hajót!");
                 }
                 else
                 {
@@ -181,6 +181,34 @@ namespace NI_torpedo
             }
         }
 
+        private bool osszes_hajo_lehelyezve()
+        {
+            if (hajo21.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo22.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo23.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo24.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo31.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo32.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo33.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo34.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo41.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo42.Visibility == Visibility.Visible)
+                return false;
+            else if (hajo51.Visibility == Visibility.Visible)
+                return false;
+
+            return true;
+        }
+
         private void sajat_jatektabla_torles_button_Click(object sender, RoutedEventArgs e)
         {
             if (!_mentett_jatek)
@@ -189,7 +217,6 @@ namespace NI_torpedo
                 {
                     jatektabla_init(kocka, sajat_jatektabla, Brushes.White);
                 }
-                _elhelyezett_hajo_db = 0;
                 _player_hajo_pos.Clear();
                 hajo_setup();
                 hajok_elhelyezese.Visibility = Visibility.Visible;
@@ -407,7 +434,7 @@ namespace NI_torpedo
                     _player_jon = false;
                     _player_number++;
                     MessageBox.Show("Gép kezd!");
-                    al_tipp(false);
+                    al_tipp(false, _sikeres_tipp, out return_value);
                 }
             }
         }
@@ -416,6 +443,7 @@ namespace NI_torpedo
         {
             _korok_szam++;
             eredmenyjelzo_update();
+            nevLabel.Content = return_value.X + " : " + return_value.Y;
             if (_player_number % 2 == 0) //player
             {
                 MessageBox.Show("Ön jön!");
@@ -427,11 +455,11 @@ namespace NI_torpedo
                 MessageBox.Show("Gép jön!");
                 _player_number++;
                 _player_jon = false;
-                al_tipp(_elozo_tipp_siker);
+                al_tipp(_elozo_tipp_siker, _sikeres_tipp, out return_value);
             }
         }
 
-        private void al_tipp(bool elozo_talalat)
+        private void al_tipp(bool elozo_talalat, Vector sikeres_tipp_seged, out Vector return_value_seged)
         {
             if (lehelyezheto_tippek_szama() > 0)
             {
@@ -474,6 +502,7 @@ namespace NI_torpedo
                         _sikeres_tipp = tipp;
                         _elozo_tipp_siker = true;
                         _al_jo_tipp.Add(tipp);
+                        return_value_seged = tipp;
                         if (_al_jo_tipp.Count == _jo_kockak_szama)
                         {
                             MessageBox.Show("Ön vesztett!");
@@ -486,6 +515,7 @@ namespace NI_torpedo
                 {
                     jatektabla_setup(tipp, sajat_jatektabla, Brushes.Red);
                     _al_rossz_tipp.Add(tipp);
+                    return_value_seged = tipp;
                 }
             }
             else
@@ -498,16 +528,16 @@ namespace NI_torpedo
                     switch (irany)
                     {
                         case 0:
-                            tipp = new Vector(_sikeres_tipp.X - 1, _sikeres_tipp.Y);
+                            tipp = new Vector(sikeres_tipp_seged.X - 1, sikeres_tipp_seged.Y);
                             break;
                         case 1:
-                            tipp = new Vector(_sikeres_tipp.X, _sikeres_tipp.Y - 1);
+                            tipp = new Vector(sikeres_tipp_seged.X, sikeres_tipp_seged.Y - 1);
                             break;
                         case 2:
-                            tipp = new Vector(_sikeres_tipp.X + 1, _sikeres_tipp.Y);
+                            tipp = new Vector(sikeres_tipp_seged.X + 1, sikeres_tipp_seged.Y);
                             break;
                         case 3:
-                            tipp = new Vector(_sikeres_tipp.X, _sikeres_tipp.Y + 1);
+                            tipp = new Vector(sikeres_tipp_seged.X, sikeres_tipp_seged.Y + 1);
                             break;
                     }
                     ujra_general = true;
@@ -540,6 +570,7 @@ namespace NI_torpedo
                         _sikeres_tipp = tipp;
                         _elozo_tipp_siker = true;
                         _al_jo_tipp.Add(tipp);
+                        return_value_seged = tipp;
                         _sikeres_al_tip_seged.Clear();
                         if (_al_jo_tipp.Count == _jo_kockak_szama)
                         {
@@ -553,6 +584,7 @@ namespace NI_torpedo
                 {
                     jatektabla_setup(tipp, sajat_jatektabla, Brushes.Red);
                     _elozo_tipp_siker = false;
+                    return_value_seged = tipp;
                     _sikeres_al_tip_seged.Add(irany);
                     _al_rossz_tipp.Add(tipp);
                 }
@@ -876,7 +908,6 @@ namespace NI_torpedo
                     }
                     _canvas_nev_seged.Visibility = Visibility.Hidden;
                     _kivalasztott_hajo_hossza = 0;
-                    _elhelyezett_hajo_db++;
                 }
                 else
                 {
