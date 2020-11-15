@@ -175,7 +175,7 @@ namespace NI_torpedo
                     _mentett_jatek = true;
                     hajok_elhelyezese.Visibility = Visibility.Collapsed;
                     eredmenyjelzo.Visibility = Visibility.Visible;
-                    sajat_hajo_mentes();
+                    ellenfel_hajo_mentes();
                     start_game();
                 }
             }
@@ -338,7 +338,7 @@ namespace NI_torpedo
             }
         }
 
-        private void sajat_hajo_mentes()
+        private void ellenfel_hajo_mentes()
         {
             List<Vector> seged = new List<Vector>();
             seged = _random_hajo_pos;
@@ -347,14 +347,38 @@ namespace NI_torpedo
 
             hajok.Add(new List<HajoEgyseg>());
             hajok[hajo_index].Add(new HajoEgyseg(seged[0], false));
+            hajok[hajo_index].Add(new HajoEgyseg(seged[1], false));
             hajo_index++;
 
 
-            for (int i = 1; i < seged.Count; i++)
+            for (int i = 2; i < seged.Count; i++)
             {
-                if (seged[i - 1].Y == seged[i].Y || seged[i].X == seged[i - 1].X)
+                if (seged[i - 1].Y == seged[i].Y  )
                 {
-                    hajok[hajo_index - 1].Add(new HajoEgyseg(seged[i], false));
+                    if (seged[i - 1].X != seged[i - 2].X)
+                    {
+                        hajok[hajo_index - 1].Add(new HajoEgyseg(seged[i], false));
+                    }
+                    else
+                    {
+                        hajok.Add(new List<HajoEgyseg>());
+                        hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
+                        hajo_index++;
+                    }
+                }
+                else if(seged[i].X == seged[i - 1].X)
+                {
+                    if (seged[i - 1].Y != seged[i-2].Y)
+                    {
+                        hajok[hajo_index - 1].Add(new HajoEgyseg(seged[i], false));
+                    }
+                    else
+                    {
+                        hajok.Add(new List<HajoEgyseg>());
+                        hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
+                        hajo_index++;
+                    }
+                   
                 }
                 else
                 {
@@ -965,12 +989,11 @@ namespace NI_torpedo
 
         private void elem_talalt(Vector talalt)
         {
-            HajoEgyseg seged = new HajoEgyseg(talalt, false);
             for(int i=0; i<hajok.Count; i++)
             {
                 for(int j=0; j<hajok[i].Count; j++)
                 {
-                    if (hajok[i][j].Equals(seged))
+                    if (hajok[i][j].vector == talalt)
                     {
                         hajok[i][j].talalt = true;
                         elsullyedt(i);
