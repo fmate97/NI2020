@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fmate\\Downloads\\NI2020-main(11)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {}
+    "D:\\c#\\Új\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fmate\\Downloads\\NI2020-main(11)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
+    "D:\\c#\\Új\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main(11)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+        "projectUniqueName": "D:\\c#\\Új\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
         "projectName": "NI_torpedo",
-        "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main(11)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
-        "packagesPath": "C:\\Users\\fmate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main(11)\\NI2020-main\\NI_torpedo\\NI_torpedo\\obj\\",
+        "projectPath": "D:\\c#\\Új\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+        "packagesPath": "C:\\Users\\rozi1\\.nuget\\packages\\",
+        "outputPath": "D:\\c#\\Új\\NI_torpedo\\NI_torpedo\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fmate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rozi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

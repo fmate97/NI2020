@@ -227,49 +227,18 @@ namespace NI_torpedo.ViewModel
             List<Vector> seged = new List<Vector>();
             seged = _random_hajo_pos;
             int hajo_index = 0;
-
-            _hajok.Add(new List<HajoEgyseg>());
-            _hajok[hajo_index].Add(new HajoEgyseg(seged[0], false));
-            _hajok[hajo_index].Add(new HajoEgyseg(seged[1], false));
-            hajo_index++;
+            int index = 0;
 
 
-            for (int i = 2; i < seged.Count; i++)
+            for (int i = 0; i < _hajok_hossza.Length; i++)
             {
-                if (seged[i - 1].Y == seged[i].Y)
+                _hajok.Add(new List<HajoEgyseg>());
+                hajo_index++;
+                for (int j = 0; j < _hajok_hossza[i]; j++)
                 {
-                    if (seged[i - 1].X != seged[i - 2].X)
-                    {
-                        _hajok[hajo_index - 1].Add(new HajoEgyseg(seged[i], false));
-                    }
-                    else
-                    {
-                        _hajok.Add(new List<HajoEgyseg>());
-                        _hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
-                        hajo_index++;
-                    }
+                    _hajok[hajo_index - 1].Add(new HajoEgyseg(seged[index], false));
+                    index++;
                 }
-                else if (seged[i].X == seged[i - 1].X)
-                {
-                    if (seged[i - 1].Y != seged[i - 2].Y)
-                    {
-                        _hajok[hajo_index - 1].Add(new HajoEgyseg(seged[i], false));
-                    }
-                    else
-                    {
-                        _hajok.Add(new List<HajoEgyseg>());
-                        _hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
-                        hajo_index++;
-                    }
-
-                }
-                else
-                {
-                    _hajok.Add(new List<HajoEgyseg>());
-                    _hajok[hajo_index].Add(new HajoEgyseg(seged[i], false));
-                    hajo_index++;
-                }
-
             }
         }
 
