@@ -6,4 +6,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="View\torpedo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\torpedo.png" />
+  </ItemGroup>
+
 </Project>

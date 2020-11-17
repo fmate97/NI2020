@@ -1,38 +1,26 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NI_torpedo;
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Text;
 
-namespace NI_torpedo.Tests
+namespace NI_torpedo.ViewModel.Tests
 {
     [TestClass()]
     public class GameWindowTests
     {
         [TestMethod()]
-        public void al_tippTest()
+        public void AlTippTest()
         {
             //Arrange
-            GameWindow gameWindow = new GameWindow(false, "Valaki");
-            Vector vektor = new Vector(2, 5);
-            Vector actual;
-            List<Vector> expected = new List<Vector>();
-
-            expected.Add(new Vector(2, 6));
-            expected.Add(new Vector(2, 4));
-            expected.Add(new Vector(3, 5));
-            expected.Add(new Vector(1, 5));
+            GameWindow_Al_viewmodel viewmodel = new GameWindow_Al_viewmodel();
+            viewmodel.TestMetod(new Vector(5, 5), new List<Vector>() { new Vector(5, 6), new Vector(5, 4), new Vector(4, 5) });
+            Vector expected = new Vector(6, 5);
 
             //Act
-            gameWindow.al_tipp(true, vektor, out actual);
+            List<int> result = viewmodel.Al_Tipp();
 
             //Assert
-            
-            Assert.IsTrue(expected.Contains(actual), " hIBA!");
-            Console.WriteLine(actual);
+            Assert.AreEqual(expected, new Vector(result[0], result[1]));
         }
     }
 }
-
-       
