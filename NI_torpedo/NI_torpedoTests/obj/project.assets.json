@@ -5389,11 +5389,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
+      "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
       "projectName": "NI_torpedoTests",
-      "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
+      "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
       "packagesPath": "C:\\Users\\fmate\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\obj\\",
+      "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fmate\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5409,8 +5409,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
-              "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj"
+            "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
+              "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj"
             }
           }
         }

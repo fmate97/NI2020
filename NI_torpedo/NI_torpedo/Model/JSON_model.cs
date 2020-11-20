@@ -33,7 +33,7 @@ namespace NI_torpedo.Model
     {
         public string Player1_Name { get; set; }
         public string Player2_Name { get; set; }
-        public string Winner_Name { get; set; }
+        public int Player_Number { get; set; }
         public List<int> Scoreboard { get; set; }
         public List<Vector> Player1_Ship_Pos { get; set; }
         public List<Vector> Player1_Good_Pos { get; set; }
@@ -45,13 +45,11 @@ namespace NI_torpedo.Model
 
         public int CheckSum_Calc()
         {
-            int return_value = 0;
+            int return_value = Player_Number;
 
             foreach (char item in Player1_Name.ToCharArray())
                 return_value += item;
             foreach (char item in Player2_Name.ToCharArray())
-                return_value += item;
-            foreach (char item in Winner_Name.ToCharArray())
                 return_value += item;
             foreach (int item in Scoreboard)
                 return_value += item;

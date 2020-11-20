@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Torpedo" Height="470" Width="850" ResizeMode="CanMinimize"
         Keyboard.KeyDown="Window_KeyDown" Keyboard.KeyUp="Window_KeyUp"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Icon="/View/torpedo.png">
     <StackPanel>
         <StackPanel Background="Black" Orientation="Horizontal">
             <Label Margin="15, 0, 0, 0" Foreground="White"  Content="F1: help" MouseLeftButtonDown="Help_MouseLeftButtonDown" HorizontalAlignment="Left"/>
@@ -85,6 +85,7 @@
             <Button x:Name="sajat_jatektabla_mentes_button" Content="Mentés" Margin="350, 0, 50, 0" FontSize="16" FontWeight="Bold" Click="Sajat_Jatektabla_Mentes_Button_Click"/>
             <Button x:Name="sajat_jatektabla_torles_button" Content="Törlés" FontSize="16" FontWeight="Bold" Click="Sajat_Jatektabla_Torles_Button_Click"/>
             <Button x:Name="exit" Content="Feladás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Exit_Button_Click"/>
+            <Button x:Name="kesobb_folyt" Content="Későbbi folytatás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Kesobb_Folyt_Click" />
         </StackPanel>
     </StackPanel>
 </Window>

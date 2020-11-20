@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.IO;
 using System.Windows;
+using NI_torpedo.Model;
 
 namespace NI_torpedo.View
 {
@@ -44,31 +46,49 @@ namespace NI_torpedo.View
 
         private void Mentes_Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)al.IsChecked)
-            {
-                if (player_name_box.Text.Length > 0)
+            if (!File.Exists(Globals.Restore_File_Name)) {
+                if ((bool)al.IsChecked)
                 {
-                    GameWindow gamewindow = new GameWindow(player_name_box.Text);
-                    gamewindow.Show();
-                    _exit = true;
-                    this.Close();
+                    if (player_name_box.Text.Length > 0)
+                    {
+                        GameWindow gamewindow = new GameWindow(player_name_box.Text);
+                        gamewindow.Show();
+                        _exit = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nem adott meg nevet!");
+                    }
                 }
-                else
+                else if ((bool)twoPlayer.IsChecked)
                 {
-                    MessageBox.Show("Nem adott meg nevet!");
+                    if (player_name_box2.Text.Length > 0 && player_name_box3.Text.Length > 0)
+                    {
+                        //TODO: 2playeres ablak
+                        _exit = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nem adott meg nevet!");
+                    }
                 }
             }
-            else if ((bool)twoPlayer.IsChecked)
+            else
             {
-                if(player_name_box2.Text.Length > 0 && player_name_box3.Text.Length > 0)
+                MessageBoxResult result = MessageBox.Show("Önnek van egy megkezdett játéka!\nAkarja folytatni?\nNem válasz esetén új játékot kezd és a régi mentés törlődik!", "Megerősítés", MessageBoxButton.YesNo);
+                if(result == MessageBoxResult.Yes)
                 {
-                    //TODO: 2playeres ablak
+                    GameWindow window = new GameWindow(player_name_box.Text, 1);
+                    window.Show();
                     _exit = true;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Nem adott meg nevet!");
+                    File.Delete(Globals.Restore_File_Name);
+                    Mentes_Button_Click(sender, e);
                 }
             }
         }

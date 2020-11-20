@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using NI_torpedo.ViewModel;
+using NI_torpedo.Model;
 
 namespace NI_torpedo.View
 {
@@ -14,15 +16,56 @@ namespace NI_torpedo.View
     {
         private bool _exit = false, _key_down = false;
         private string _player_name;
-        private readonly GameWindow_Al_viewmodel _viewModel;
+        private readonly GameWindow_Al_viewmodel _viewModel = new GameWindow_Al_viewmodel();
         private Canvas _hajo_klikk;
         private Dictionary<Canvas, Visibility> _hajok_neve = new Dictionary<Canvas, Visibility>();
+
         public GameWindow(string nev)
         {
             InitializeComponent();
             _player_name = nev;
-            _viewModel = new GameWindow_Al_viewmodel();
             Jatekablak_Init();
+        }
+
+        public GameWindow(string nev, byte a)
+        {
+            InitializeComponent();
+            if (_viewModel.Restore_Game() == 0)
+            {
+                _player_name = _viewModel.Player_Name_Get();
+                Jatekablak_Init_Restore();
+                Eredmenyjelzo_Update();
+                _viewModel.Mentett_Jatek_Set(true);
+
+                foreach (Vector random_hajo in _viewModel.Player_Hajo_Pos())
+                {
+                    Jatektabla_Setup(random_hajo, sajat_jatektabla, Brushes.Blue);
+                }
+                foreach (Vector random_hajo in _viewModel.Player_Jo_Tipp())
+                {
+                    Jatektabla_Setup(random_hajo, masik_player_jatektabla, Brushes.Green);
+                }
+                foreach (Vector random_hajo in _viewModel.Player_Rossz_Tipp())
+                {
+                    Jatektabla_Setup(random_hajo, masik_player_jatektabla, Brushes.Red);
+                }
+                foreach (Vector random_hajo in _viewModel.Al_Jo_Tipp())
+                {
+                    Jatektabla_Setup(random_hajo, sajat_jatektabla, Brushes.Green);
+                }
+                foreach (Vector random_hajo in _viewModel.Al_Rossz_Tipp())
+                {
+                    Jatektabla_Setup(random_hajo, sajat_jatektabla, Brushes.Red);
+                }
+                Game();
+            }
+            else
+            {
+                MessageBox.Show("Az előző mentési fájl sérült!\nÚj játék lett elkezdve!");
+                File.Delete(Globals.Restore_File_Name);
+                _player_name = nev;
+                Jatekablak_Init();
+            }
         }
 
         private void HajokNeve_Init(bool torles)
@@ -153,11 +196,19 @@ namespace NI_torpedo.View
                     Start_Game();
                 }
             }
+            else
+            {
+                MessageBox.Show("Már elmentette a játékot.\nNem tudd még egyszer menteni csak ha új játékot kezd!");
+            }
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Biztos fel akarja adni?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (!_viewModel.Mentett_Jatek())
+            {
+                MessageBox.Show("A játék még nem kezdődött el így nem adható fel!");
+            }
+            else if (MessageBox.Show("Biztos fel akarja adni?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 _viewModel.Save("Al");
                 MainWindow mainWindow = new MainWindow();
@@ -243,6 +294,10 @@ namespace NI_torpedo.View
                 _viewModel.Player_Hajo_Pos_Clear();
                 Hajo_Setup(true);
                 hajok_elhelyezese.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("A játék már elkezdődött, ilyenkor már nem törölhető a tábla!");
             }
         }
 
@@ -354,6 +409,15 @@ namespace NI_torpedo.View
             Random_Hajo_Gen();
         }
 
+        private void Jatekablak_Init_Restore()
+        {
+            nevLabel.Content = $"Jó játékot {_player_name}!";
+            Jatektabla_Init(sajat_jatektabla);
+            Jatektabla_Init(masik_player_jatektabla);
+            hajok_elhelyezese.Visibility = Visibility.Collapsed;
+            eredmenyjelzo.Visibility = Visibility.Visible;
+        }
+
         private void Jatektabla_Init(Canvas canvas)
         {
             List<Vector> init_vector = _viewModel.Init_Vector();
@@ -404,6 +468,26 @@ namespace NI_torpedo.View
         {
             HelpWindow helpWindow = new HelpWindow();
             helpWindow.Show();
+        }
+
+        private void Kesobb_Folyt_Click(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.Mentett_Jatek())
+            {
+                MessageBoxResult result = MessageBox.Show("Biztos akarja később folytatni?", "Megerősítés", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    _viewModel.Save_Game();
+                    _exit = true;
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("A játék még nem kezdődött el így későbbi folytatása nem lehetséges!");
+            }
         }
 
         protected override void OnClosing(CancelEventArgs e)

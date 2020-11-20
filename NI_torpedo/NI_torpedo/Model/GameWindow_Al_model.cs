@@ -23,6 +23,7 @@ namespace NI_torpedo.ViewModel
 
         private Random _rnd = new Random();
         private DataSave_JSON _dataSave_JSON = new DataSave_JSON();
+        private Restore_File _restor_file_JSON = new Restore_File();
         private bool _mentett_jatek = false, _fuggoleges = false, _elozo_tipp_siker, _game_end = false;
         private int _player_number;
         private readonly int _tabla_merete = 10, _tabla_magassaga = 300, _tabla_szelessege = 300, _margo_merete = 3;
@@ -189,6 +190,71 @@ namespace NI_torpedo.ViewModel
                 File.WriteAllText(Globals.Save_File_Name, jsonString);
             }
         }
+
+        public void JSON_Save_Restore()
+        {
+            if (File.Exists(Globals.Restore_File_Name))
+            {
+                File.Delete(Globals.Restore_File_Name);
+                JSON_Save_Restore();
+            }
+            else
+            {
+                _restor_file_JSON.Player1_Name = _al_name;
+                _restor_file_JSON.Player2_Name = _player_name;
+                _restor_file_JSON.Player_Number = _player_number;
+                _restor_file_JSON.Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, _hajo2, _hajo3, _hajo4, _hajo5, _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al };
+                _restor_file_JSON.Player1_Ship_Pos = _random_hajo_pos;
+                _restor_file_JSON.Player1_Good_Pos = _al_jo_tipp;
+                _restor_file_JSON.Player1_Bad_Pos = _al_rossz_tipp;
+                _restor_file_JSON.Player2_Ship_Pos = _player_hajo_pos;
+                _restor_file_JSON.Player2_Good_Pos = _player_jo_tipp;
+                _restor_file_JSON.Player2_Bad_Pos = _player_rossz_tipp;
+                _restor_file_JSON.CheckSum = _restor_file_JSON.CheckSum_Calc();
+
+                String jsonString = JsonSerializer.Serialize<Restore_File>(_restor_file_JSON);
+                File.WriteAllText(Globals.Restore_File_Name, jsonString);
+            }
+        }
+
+        public int Restore_Game()
+        {
+            if (File.Exists(Globals.Restore_File_Name))
+            {
+                String jsonString = File.ReadAllText(Globals.Restore_File_Name);
+                _restor_file_JSON = JsonSerializer.Deserialize<Restore_File>(jsonString);
+                
+                if(_restor_file_JSON.CheckSum != _restor_file_JSON.CheckSum_Calc())
+                {
+                    return -1;
+                }
+                _al_name = _restor_file_JSON.Player1_Name;
+                 _player_name = _restor_file_JSON.Player2_Name;
+                _player_number = _restor_file_JSON.Player_Number;
+                List<int> helper = _restor_file_JSON.Scoreboard;
+                {
+                    _korok_szam = helper[0] - 1;
+                    _sajat_talalat = helper[1];
+                    _ellenfel_talalat = helper[2];
+                    _hajo2 = helper[3];
+                    _hajo3 = helper[4];
+                    _hajo4 = helper[5];
+                    _hajo5 = helper[6];
+                    _hajo2_al = helper[7];
+                    _hajo3_al = helper[8];
+                    _hajo4_al = helper[9];
+                    _hajo5_al = helper[10];
+                }
+                _random_hajo_pos = _restor_file_JSON.Player1_Ship_Pos;
+                _al_jo_tipp = _restor_file_JSON.Player1_Good_Pos;
+                _al_rossz_tipp = _restor_file_JSON.Player1_Bad_Pos;
+                _player_hajo_pos = _restor_file_JSON.Player2_Ship_Pos;
+                _player_jo_tipp = _restor_file_JSON.Player2_Good_Pos;
+                _player_rossz_tipp = _restor_file_JSON.Player2_Bad_Pos;
+            }
+            return 0;
+        }
+
 
         public int Coord_Conv(double number, int seged)
         {

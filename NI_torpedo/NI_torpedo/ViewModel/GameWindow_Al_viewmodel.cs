@@ -76,6 +76,11 @@ namespace NI_torpedo.ViewModel
             Model.JSON_Save();
         }
 
+        public List<Vector> Player_Hajo_Pos()
+        {
+            return Model.Player_Hajo_Pos;
+        }
+
         public Brush Player_Lepese(Vector eger_pos_vector)
         {
             bool volt_mar = false;
@@ -125,6 +130,21 @@ namespace NI_torpedo.ViewModel
         public List<Vector> Player_Jo_Tipp()
         {
             return Model.Player_Jo_Tipp;
+        }
+
+        public List<Vector> Al_Rossz_Tipp()
+        {
+            return Model.Al_Rossz_Tipp;
+        }
+
+        public List<Vector> Al_Jo_Tipp()
+        {
+            return Model.Al_Jo_Tipp;
+        }
+
+        public string Player_Name_Get()
+        {
+            return Model.Player_Name;
         }
 
         public List<Vector> Player_Rossz_Tipp()
@@ -361,6 +381,16 @@ namespace NI_torpedo.ViewModel
                 }
             }
             return true;
+        }
+
+        public int Restore_Game()
+        {
+            return Model.Restore_Game();
+        }
+
+        public void Save_Game()
+        {
+            Model.JSON_Save_Restore();
         }
 
         public void Random_Hajo_Gen()

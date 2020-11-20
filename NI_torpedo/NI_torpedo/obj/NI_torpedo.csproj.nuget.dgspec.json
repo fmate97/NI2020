@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {}
+    "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
+    "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+        "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
         "projectName": "NI_torpedo",
-        "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+        "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
         "packagesPath": "C:\\Users\\fmate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (13)\\NI2020-main\\NI_torpedo\\NI_torpedo\\obj\\",
+        "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (14)\\NI2020-main\\NI_torpedo\\NI_torpedo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fmate\\AppData\\Roaming\\NuGet\\NuGet.Config",
