@@ -1,9 +1,12 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace NI_torpedo.View
 {
     public partial class HelpWindow : Window
     {
+        private bool _exit = false;
+
         public HelpWindow()
         {
             InitializeComponent();
@@ -22,7 +25,22 @@ namespace NI_torpedo.View
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
+            _exit = true;
             this.Close();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!_exit)
+            {
+                MessageBox.Show("Kérem használja a \"Vissza a játékhoz\" gombot a kilépéshez!");
+                base.OnClosing(e);
+                e.Cancel = true;
+            }
+            else
+            {
+                base.OnClosing(e);
+            }
         }
     }
 }

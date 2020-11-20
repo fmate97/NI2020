@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Torpedo Help" Height="525" Width="350"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize" Icon="/View/torpedo.png" >
+        ResizeMode="NoResize" Icon="/View/torpedo.png" >
     <Grid>
         <Label x:Name="rules" Content="Label" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="94"/>
         <TextBlock x:Name="game" HorizontalAlignment="Left" Margin="10,41,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="400" Width="301" FontWeight="Bold"/>

@@ -47,20 +47,33 @@ namespace NI_torpedo.ViewModel
             return Model.Game_End;
         }
 
+        public void Player_Name(string nev)
+        {
+            Model.Player_Name = nev;
+        }
+
         public int Game_End()
         {
             if(Model.Player_Jo_Tipp.Count == Model.Jo_Kockak_Szama())
             {
                 Model.Game_End = true;
+                Model.Winner_Name(Model.Player_Name);
                 return 0;
             }
             else if (Model.Al_Jo_Tipp.Count == Model.Jo_Kockak_Szama())
             {
                 Model.Game_End = true;
+                Model.Winner_Name("Al");
                 return 1;
             }
             Model.Game_End = false;
             return 2;
+        }
+
+        public void Save(string winner_name)
+        {
+            Model.Winner_Name(winner_name);
+            Model.JSON_Save();
         }
 
         public Brush Player_Lepese(Vector eger_pos_vector)
@@ -160,7 +173,6 @@ namespace NI_torpedo.ViewModel
                     {
                         if (tipp_seged == tipp)
                         {
-                            //tipp = new Vector(Model.Get_Random_Number(Model.Tabla_Merete - 1), Model.Get_Random_Number(Model.Tabla_Merete - 1));
                             ujra_general = true;
                             break;
                         }
@@ -169,7 +181,6 @@ namespace NI_torpedo.ViewModel
                     {
                         if (tipp_seged == tipp)
                         {
-                            //tipp = new Vector(Model.Get_Random_Number(Model.Tabla_Merete - 1), Model.Get_Random_Number(Model.Tabla_Merete - 1));
                             ujra_general = true;
                             break;
                         }
@@ -227,7 +238,6 @@ namespace NI_torpedo.ViewModel
                     {
                         if (tipp_seged == tipp)
                         {
-                            //tipp = new Vector(Model.Get_Random_Number(Model.Tabla_Merete - 1), Model.Get_Random_Number(Model.Tabla_Merete - 1));
                             ujra_general = false;
                             break;
                         }
@@ -236,7 +246,6 @@ namespace NI_torpedo.ViewModel
                     {
                         if (tipp_seged == tipp)
                         {
-                            //tipp = new Vector(Model.Get_Random_Number(Model.Tabla_Merete - 1), Model.Get_Random_Number(Model.Tabla_Merete - 1));
                             ujra_general = false;
                             break;
                         }

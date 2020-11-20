@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,6 +12,7 @@ namespace NI_torpedo.View
 {
     public partial class GameWindow : Window
     {
+        private bool _exit = false, _key_down = false;
         private string _player_name;
         private readonly GameWindow_Al_viewmodel _viewModel;
         private Canvas _hajo_klikk;
@@ -69,12 +71,16 @@ namespace NI_torpedo.View
                 HelpWindow helpWindow = new HelpWindow();
                 helpWindow.Show();
             }
-            else if (e.Key == Key.F2 && Keyboard.IsKeyDown(Key.LeftShift))
+            else if (e.Key == Key.F2 && Keyboard.IsKeyDown(Key.LeftShift) && !_key_down)
             {
+                _key_down = true;
+                masik_player_jatektabla.IsEnabled = false;
                 Show_Al_Hajo();
             }
-            else if (e.Key == Key.LeftShift && Keyboard.IsKeyDown(Key.F2))
+            else if (e.Key == Key.LeftShift && Keyboard.IsKeyDown(Key.F2) && !_key_down)
             {
+                _key_down = true;
+                masik_player_jatektabla.IsEnabled = false;
                 Show_Al_Hajo();
             }
         }
@@ -109,9 +115,11 @@ namespace NI_torpedo.View
 
         public void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            if ((e.Key == Key.F2 || Keyboard.IsKeyUp(Key.LeftShift)))
+            if ((e.Key == Key.F2 || Keyboard.IsKeyUp(Key.LeftShift)) && _key_down)
             {
                 Hide_Al_Hajo();
+                masik_player_jatektabla.IsEnabled = true;
+                _key_down = false;
             }
         }
 
@@ -144,6 +152,18 @@ namespace NI_torpedo.View
                     _viewModel.Ellenfel_Hajo_Mentes();
                     Start_Game();
                 }
+            }
+        }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Biztos fel akarja adni?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                _viewModel.Save("Al");
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                _exit = true;
+                this.Close();
             }
         }
 
@@ -307,13 +327,17 @@ namespace NI_torpedo.View
             if (return_value == 0)
             {
                 MessageBox.Show("Ön nyert!");
+                _viewModel.Save(_player_name);
                 window.Show();
+                _exit = true;
                 this.Close();
             }
             else if(return_value == 1)
             {
                 MessageBox.Show("Gép nyert!");
+                _viewModel.Save("Al");
                 window.Show();
+                _exit = true;
                 this.Close();
             }
         }
@@ -321,6 +345,7 @@ namespace NI_torpedo.View
         private void Jatekablak_Init()
         {
             nevLabel.Content = $"Jó játékot {_player_name}!";
+            _viewModel.Player_Name(_player_name);
             Jatektabla_Init(sajat_jatektabla);
             Jatektabla_Init(masik_player_jatektabla);
             hajok_elhelyezese.Visibility = Visibility.Visible;
@@ -379,6 +404,20 @@ namespace NI_torpedo.View
         {
             HelpWindow helpWindow = new HelpWindow();
             helpWindow.Show();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!_exit)
+            {
+                MessageBox.Show("Kérem használja a \"Feladás\" gombot a kilépéshez!");
+                base.OnClosing(e);
+                e.Cancel = true;
+            }
+            else
+            {
+                base.OnClosing(e);
+            }
         }
     }
 }

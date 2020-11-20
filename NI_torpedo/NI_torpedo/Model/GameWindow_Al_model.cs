@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Text.Json;
+using NI_torpedo.Model;
+using System.IO;
 
 namespace NI_torpedo.ViewModel
 {
@@ -18,25 +21,29 @@ namespace NI_torpedo.ViewModel
             }
         }
 
-        readonly Random RND = new Random();
+        private Random _rnd = new Random();
+        private DataSave_JSON _dataSave_JSON = new DataSave_JSON();
+        private bool _mentett_jatek = false, _fuggoleges = false, _elozo_tipp_siker, _game_end = false;
+        private int _player_number;
         private readonly int _tabla_merete = 10, _tabla_magassaga = 300, _tabla_szelessege = 300, _margo_merete = 3;
         private readonly int[] _hajok_hossza = { 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2 };
-        private List<Vector> _random_hajo_pos = new List<Vector>();
-        private bool _mentett_jatek = false, _fuggoleges = false;
-        private List<Vector> _player_hajo_pos = new List<Vector>();
-        private int _player_number;
-        private List<Vector> _player_jo_tipp = new List<Vector>(), _player_rossz_tipp = new List<Vector>();
-        private int _korok_szam = 0, _sajat_talalat = 0, _ellenfel_talalat = 0;
-        private int _hajo2 = 0;
-        private int _hajo3 = 0;
-        private int _hajo4 = 0;
-        private int _hajo5 = 0;
-        private bool _elozo_tipp_siker;
-        private List<Vector> _al_rossz_tipp = new List<Vector>(), _al_jo_tipp = new List<Vector>();
+        private string _player_name, _winner_name, _al_name = "Al";
         private Vector _sikeres_tipp;
         private List<int> _sikeres_al_tip_seged = new List<int>();
+        private List<Vector> _random_hajo_pos = new List<Vector>(), _player_hajo_pos = new List<Vector>();
+        private List<Vector> _player_jo_tipp = new List<Vector>(), _player_rossz_tipp = new List<Vector>();
+        private List<Vector> _al_rossz_tipp = new List<Vector>(), _al_jo_tipp = new List<Vector>();
+        private int _korok_szam = 0, _sajat_talalat = 0, _ellenfel_talalat = 0;
+
+        private int _hajo2 = 0, _hajo3 = 0, _hajo4 = 0, _hajo5 = 0;
+        private int _hajo2_al = 0, _hajo3_al = 0, _hajo4_al = 0, _hajo5_al = 0;
         private readonly List<List<HajoEgyseg>> _hajok = new List<List<HajoEgyseg>>();
-        private bool _game_end = false;
+
+        public string Player_Name
+        {
+            get { return _player_name; }
+            set { _player_name = value; }
+        }
 
         public bool Game_End
         {
@@ -48,16 +55,6 @@ namespace NI_torpedo.ViewModel
         {
             get { return _sikeres_al_tip_seged; }
             set { _sikeres_al_tip_seged = value; }
-        }
-
-        public int Jo_Kockak_Szama()
-        {
-            int kocka_db = 0;
-            foreach(var item in _hajok_hossza)
-            {
-                kocka_db += item;
-            }
-            return kocka_db;
         }
 
         public Vector Sikeres_Tipp
@@ -144,6 +141,55 @@ namespace NI_torpedo.ViewModel
             set { _fuggoleges = value; }
         }
 
+        public int Jo_Kockak_Szama()
+        {
+            int kocka_db = 0;
+            foreach(var item in _hajok_hossza)
+            {
+                kocka_db += item;
+            }
+            return kocka_db;
+        }
+
+        public void Winner_Name(string name)
+        {
+            _winner_name = name;
+        }
+
+        public void JSON_Save()
+        {
+            String jsonString;
+            if (File.Exists(Globals.Save_File_Name))
+            {
+                jsonString = File.ReadAllText(Globals.Save_File_Name);
+                _dataSave_JSON = JsonSerializer.Deserialize<DataSave_JSON>(jsonString);
+
+                _dataSave_JSON.Data_number++;
+                _dataSave_JSON.Data.Add(new DataSave_JSON_helper() {
+                    Player1_Name = _player_name,
+                    Player2_Name = _al_name,
+                    Winner_Name = _winner_name, 
+                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, _hajo2, _hajo3, _hajo4, _hajo5, _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
+                });
+
+                jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
+                File.WriteAllText(Globals.Save_File_Name, jsonString);
+            }
+            else
+            {
+                _dataSave_JSON.Data_number = 1;
+                _dataSave_JSON.Data.Add(new DataSave_JSON_helper() {
+                    Player1_Name = _player_name,
+                    Player2_Name = _al_name, 
+                    Winner_Name = _winner_name, 
+                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, _hajo2, _hajo3, _hajo4, _hajo5, _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
+                });
+
+                jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
+                File.WriteAllText(Globals.Save_File_Name, jsonString);
+            }
+        }
+
         public int Coord_Conv(double number, int seged)
         {
             var unit = _tabla_magassaga / _tabla_merete;
@@ -208,7 +254,7 @@ namespace NI_torpedo.ViewModel
 
         public int Get_Random_Number(int maxvalue)
         {
-            return RND.Next(maxvalue + 1);
+            return _rnd.Next(maxvalue + 1);
         }
 
         public List<Vector> Init_Vector()

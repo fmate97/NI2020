@@ -1,11 +1,13 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace NI_torpedo.View
 {
     public partial class MainWindow : Window
     {
+        private bool _exit = false;
         public MainWindow()
-        {
+        {            
             InitializeComponent();
         }
 
@@ -16,6 +18,8 @@ namespace NI_torpedo.View
                 player_name.Visibility = Visibility.Visible;
                 twoPlayer.IsChecked = false;
                 player_name2.Visibility = Visibility.Collapsed;
+                player_name_box2.Text = "";
+                player_name_box3.Text = "";
             }
             else
             {
@@ -30,6 +34,7 @@ namespace NI_torpedo.View
                 al.IsChecked = false;
                 player_name.Visibility = Visibility.Collapsed;
                 player_name2.Visibility = Visibility.Visible;
+                player_name_box.Text = "";
             }
             else
             {
@@ -45,6 +50,7 @@ namespace NI_torpedo.View
                 {
                     GameWindow gamewindow = new GameWindow(player_name_box.Text);
                     gamewindow.Show();
+                    _exit = true;
                     this.Close();
                 }
                 else
@@ -57,6 +63,7 @@ namespace NI_torpedo.View
                 if(player_name_box2.Text.Length > 0 && player_name_box3.Text.Length > 0)
                 {
                     //TODO: 2playeres ablak
+                    _exit = true;
                     this.Close();
                 }
                 else
@@ -83,7 +90,31 @@ namespace NI_torpedo.View
 
         private void Eredmenyek_Button_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Eredmenyek Show
+            ScoreBoardWindow scoreBoardWindow = new ScoreBoardWindow();
+            scoreBoardWindow.Show();
+        }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Biztos ki akar lépni?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                _exit = true;
+                this.Close();
+            }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!_exit)
+            {
+                MessageBox.Show("Kérem használja a \"Kilépés\" gombot a kilépéshez!");
+                base.OnClosing(e);
+                e.Cancel = true;
+            }
+            else
+            {
+                base.OnClosing(e);
+            }
         }
     }
 }
