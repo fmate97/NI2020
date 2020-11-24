@@ -1,0 +1,102 @@
+﻿<Window x:Class="NI_torpedo.View.Player_GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NI_torpedo.View"
+        mc:Ignorable="d"
+         Title="Torpedo" Height="470" Width="890" ResizeMode="CanMinimize"
+        Keyboard.KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterScreen" Icon="/View/torpedo.png">
+    <StackPanel>
+        <StackPanel Background="Black" Orientation="Horizontal">
+            <Label Margin="15, 0, 0, 0" Foreground="White"  Content="F1: help" MouseLeftButtonDown="Help_MouseLeftButtonDown" HorizontalAlignment="Left"/>
+            <Label Margin="15, 0, 0, 0" Foreground="White"  Content="Shift + F2: Al hajóinak megmutatása" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="31">
+            <Label x:Name="Next" FontWeight="Bold" Width="198" Margin="350,0,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="30" Width="886">
+            <Label x:Name="FirstPlayer" Margin="130, 0, 0, 0" FontWeight="Bold" Width="274"/>
+            <Label x:Name="SecondPlayer" Margin="50, 0, 0, 0" FontWeight="Bold" Width="292"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="FirstPlayer_Scoreboard" Margin="10, 0, 0,0 ">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Körök száma: "/>
+                    <Label Content="0" x:Name="First_NumberOfRound" Margin="12, 0, 0, 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Saját találatok: "/>
+                    <Label Content="0" x:Name="First_FirstPlayer_Hits" Margin="5, 0, 0, 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Ellenfél találatai:"/>
+                    <Label Content="0" x:Name="First_SecondPlayer_Hits"/>
+                </StackPanel>
+                <Label Content="Elsülyesztett:" />
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="2-es hajók:"/>
+                    <Label x:Name="FirstShip2" Content="0"/>
+                    <Label Content="/ 4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="3-as hajók:"/>
+                    <Label x:Name="FirstShip3" Content="0"/>
+                    <Label Content="/ 4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="4-es hajók:"/>
+                    <Label x:Name="FirstShip4" Content="0"/>
+                    <Label Content="/ 2"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="5-ös hajók:"/>
+                    <Label x:Name="FirstShip5" Content="0"/>
+                    <Label Content="/ 1"/>
+                </StackPanel>
+            </StackPanel>
+            <Canvas x:Name="FirstPlayer_TippTable" Background="Black" MouseLeftButtonDown="FirstPlayer_TippTable_MouseLeftButtonDown" Height="300" Width="300" Margin="5,0,25,0"/>
+            <Canvas x:Name="SecondPlayer_TippTable" Background="Black" MouseLeftButtonDown="SecondPlayer_TippTable_MouseLeftButtonDown" Height="300" Width="300"/>
+            <StackPanel x:Name="SecondPayer_Scoreboard" Margin="10, 0, 0, 0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Körök száma: "/>
+                    <Label Content="0" x:Name="Second_Number" Margin="12, 0, 0, 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Saját találatok: "/>
+                    <Label Content="0" x:Name="Second_SecondPlayer_Hits" Margin="5, 0, 0, 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Ellenfél találatai:"/>
+                    <Label Content="0" x:Name="Second_FirstPlayer_Hits"/>
+                </StackPanel>
+                <Label Content="Elsülyesztett:" />
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="2-es hajók:"/>
+                    <Label x:Name="SecondShip2" Content="0"/>
+                    <Label Content="/ 4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="3-as hajók:"/>
+                    <Label x:Name="SecondShip23" Content="0"/>
+                    <Label Content="/ 4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="4-es hajók:"/>
+                    <Label x:Name="SecondShip24" Content="0"/>
+                    <Label Content="/ 2"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="5-ös hajók:"/>
+                    <Label x:Name="SecondShip25" Content="0"/>
+                    <Label Content="/ 1"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+            <Button x:Name="exit" Content="Feladás" FontSize="16" FontWeight="Bold" Margin="510, 0, 0, 0" Click="Exit_Button_Click"/>
+            <Button x:Name="kesobb_folyt" Content="Későbbi folytatás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Kesobb_Folyt_Click" />
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -65,7 +65,8 @@ namespace NI_torpedo.View
                 {
                     if (player_name_box2.Text.Length > 0 && player_name_box3.Text.Length > 0)
                     {
-                        //TODO: 2playeres ablak
+                        ShipPut ship = new ShipPut(player_name_box2.Text, player_name_box3.Text);
+                        ship.Show();
                         _exit = true;
                         this.Close();
                     }

@@ -251,10 +251,29 @@ namespace NI_torpedo.ViewModel
                 _player_hajo_pos = _restor_file_JSON.Player2_Ship_Pos;
                 _player_jo_tipp = _restor_file_JSON.Player2_Good_Pos;
                 _player_rossz_tipp = _restor_file_JSON.Player2_Bad_Pos;
+
+                Ellenfel_Hajo_Mentes();
+                HajoRestore();
             }
             return 0;
         }
 
+        public void HajoRestore()
+        {
+            foreach (var _joTipp in Player_Jo_Tipp)
+            {
+                for (int i = 0; i < _hajok.Count; i++)
+                {
+                    for (int j = 0; j < _hajok[i].Count; j++)
+                    {
+                        if (_joTipp == _hajok[i][j].vector)
+                        {
+                            _hajok[i][j].talalt = true;
+                        }
+                    }
+                }
+            }
+        }
 
         public int Coord_Conv(double number, int seged)
         {

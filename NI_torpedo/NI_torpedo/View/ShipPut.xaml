@@ -1,0 +1,48 @@
+﻿<Window x:Class="NI_torpedo.View.ShipPut"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NI_torpedo.View"
+        mc:Ignorable="d"
+        Title="Torpedo" Height="450" Width="500" ResizeMode="CanMinimize"
+        Keyboard.KeyDown="Window_KeyDown" 
+        WindowStartupLocation="CenterScreen" Icon="/View/torpedo.png">
+    <StackPanel>
+        <StackPanel Background="Black" Orientation="Horizontal">
+            <Label Margin="15, 0, 0, 0" Foreground="White"  Content="F1: help" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="28">
+            <Label x:Name="NameLabel" FontWeight="Bold" Foreground="Red" Width="421"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Canvas x:Name="Ship_Put_GameTable" Background="Black" MouseLeftButtonDown="Ship_Put_Gametable_MouseLeftButtonDown" Height="300" Width="300" Margin="10,0,0,0"/>
+            <StackPanel x:Name="Ships_table" Orientation="Horizontal" Visibility="Visible" Margin="20, 0, 0, 0" MouseLeftButtonDown="Ships_MouseLeftButtonDown" MouseRightButtonDown="Ships_MouseRightButtonDown">
+                <StackPanel>
+                    <Canvas Height="60" Width="30" Margin="0, 0, 10, 10" x:Name="hajo21" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="60" Width="30" Margin="0, 0, 10, 10" x:Name="hajo22" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="60" Width="30" Margin="0, 0, 10, 10" x:Name="hajo23" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="60" Width="30" Margin="0, 0, 10, 10" x:Name="hajo24" Background="Black" Visibility="Visible"/>
+                </StackPanel>
+                <StackPanel>
+                    <Canvas Height="90" Width="30" Margin="0, 0, 10, 10" x:Name="hajo31" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="90" Width="30" Margin="0, 0, 10, 10" x:Name="hajo32" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="90" Width="30" Margin="0, 0, 10, 10" x:Name="hajo33" Background="Black" Visibility="Visible"/>
+                </StackPanel>
+                <StackPanel>
+                    <Canvas Height="90" Width="30" Margin="0, 0, 10, 10" x:Name="hajo34" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="120" Width="30" Margin="0, 0, 10, 10" x:Name="hajo41" Background="Black" Visibility="Visible"/>
+                </StackPanel>
+                <StackPanel>
+                    <Canvas Height="120" Width="30" Margin="0, 0, 10, 10" x:Name="hajo42" Background="Black" Visibility="Visible"/>
+                    <Canvas Height="150" Width="30" Margin="0, 0, 10, 10" x:Name="hajo51" Background="Black" Visibility="Visible"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+            <Button x:Name="Save_Button" Content="Mentés" Margin="45, 0, 50, 0" FontSize="16" FontWeight="Bold" Click="Save_Button_Click"/>
+            <Button x:Name="Clear_Button" Content="Törlés" Margin="0,0,50,0" FontSize="16" FontWeight="Bold" Click="Clear_Button_Click" />
+            <Button x:Name="Exit_Button" Content="Kilépés" FontSize="16" FontWeight="Bold" Click="Exit_Button_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
