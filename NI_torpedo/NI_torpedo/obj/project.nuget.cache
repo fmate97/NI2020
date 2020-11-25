@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bfWBz+9d03f3JG/8hBj5O0NFzsnwAtYf1Ad+s1WnJUazFtH/dpDpU0jN3B47gSczo/0mqUaqstQTDZV16f21hQ==",
+  "dgSpecHash": "tuQ0R0XElKjUqzPsMyMZQbhAiA6qeiKaCOv+6G/jBBBaIWtI/FWZ0KHINNEXoOQHOTNQaDspgXNoVyF9Xa7VVw==",
   "success": true,
-  "projectFilePath": "D:\\c#\\menni fog!\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+  "projectFilePath": "D:\\c#\\menni\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rozi1\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],

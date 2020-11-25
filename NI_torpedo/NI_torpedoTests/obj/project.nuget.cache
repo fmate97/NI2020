@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "snmSOv0JfoTDNji8C1ZCtNSeik7H0UTP7XftIUaiYkUMwiBFtCTKmBWGD1Jmsx4kI7EN0pov3kIG0+izMGyOnw==",
+  "dgSpecHash": "nCxN4kyCb3MwekcOjrHSCLRlkniFtfDXz4B76ugRDFQKDhu3d1Qe/FDJqYx6p9Wr2QtMV+mJFtHqynziTRovaQ==",
   "success": true,
-  "projectFilePath": "D:\\c#\\menni fog!\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
+  "projectFilePath": "D:\\c#\\menni\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rozi1\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
     "C:\\Users\\rozi1\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",

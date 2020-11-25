@@ -21,7 +21,9 @@ namespace NI_torpedo.ViewModel
             Player_Model.SecondName = secondName;
         }
 
-        public GameWindow_Player_viewmodel(string firstName, string secondName, List<Vector> firstPlayerShip, List<Vector> secondPlayerShip)
+        public GameWindow_Player_viewmodel(string firstName, string secondName,
+            List<Vector> firstPlayerShip, List<Vector> secondPlayerShip,
+            List<List<ShipUnit>> FirstShip, List<List<ShipUnit>> SecondShip)
         {
             Player_Model.FirstName = firstName;
             Player_Model.SecondName = secondName;
@@ -33,6 +35,24 @@ namespace NI_torpedo.ViewModel
             foreach (var ship in secondPlayerShip)
             {
                 Player_Model.SecondPlayerShip.Add(ship);
+            }
+
+            for(int i=0; i<FirstShip.Count; i++)
+            {
+                Player_Model.FirstShips.Add(new List<ShipUnit>());
+                for(int j=0; j < FirstShip[i].Count; j++)
+                {
+                    Player_Model.FirstShips[i].Add(FirstShip[i][j]);
+                }
+            }
+
+            for (int i = 0; i < SecondShip.Count; i++)
+            {
+                Player_Model.SecondShips.Add(new List<ShipUnit>());
+                for (int j = 0; j < SecondShip[i].Count; j++)
+                {
+                    Player_Model.SecondShips[i].Add(SecondShip[i][j]);
+                }
             }
         }
 
@@ -200,6 +220,21 @@ namespace NI_torpedo.ViewModel
             return Player_Model.FirstPlayerShip;
         }
 
+        public void FirstShipNewList()
+        {
+            Player_Model.FirstShips.Add(new List<ShipUnit>());
+        }
+
+        public void FirstShipAddVector(int s, Vector vector)
+        {
+            Player_Model.FirstShips[s].Add(new ShipUnit(vector, false));
+        }
+
+        public List<List<ShipUnit>> FirstShip()
+        {
+            return Player_Model.FirstShips;
+        }
+
         public void SecondShipAdd(Vector vector)
         {
             Player_Model.SecondPlayerShip.Add(vector);
@@ -219,7 +254,24 @@ namespace NI_torpedo.ViewModel
         {
             return Player_Model.SecondPlayerShip;
         }
+        public void SecondShipAdd()
+        {
+            Player_Model.SecondShips.Add(new List<ShipUnit>());
+        }
+        public void SecondShipNewList()
+        {
+            Player_Model.SecondShips.Add(new List<ShipUnit>());
+        }
 
+        public void SecondShipAddVector(int s, Vector vector)
+        {
+            Player_Model.SecondShips[s].Add(new ShipUnit(vector, false));
+        }
+
+        public List<List<ShipUnit>> SecondShip()
+        {
+            return Player_Model.SecondShips;
+        }
         public int CubeSize()
         {
             return Player_Model.CubeSize;
@@ -259,6 +311,8 @@ namespace NI_torpedo.ViewModel
                 if (Player_Model.SecondPlayerShip[i] == vector)
                 {
                     Player_Model.FirstPlayer_GoodTipp.Add(vector);
+                    Player_Model.NumberOfFirstPlayerHits++;
+                    Player_Model.FirstShipHit(vector);
                     return Brushes.Green;
                 }
             }
@@ -287,10 +341,12 @@ namespace NI_torpedo.ViewModel
                 if (Player_Model.FirstPlayerShip[i] == vector)
                 {
                     Player_Model.SecondPlayer_GoodTipp.Add(vector);
+                    Player_Model.NumberOfSecondPlayerHits++;
+                    Player_Model.SecondShipHit(vector);
                     return Brushes.Green;
                 }
             }
-            Player_Model.FirstPlayer_WrongTipp.Add(vector);
+            Player_Model.SecondPlayer_WrongTipp.Add(vector);
             return Brushes.Red;
         }
 
@@ -302,6 +358,60 @@ namespace NI_torpedo.ViewModel
         public int SecondPlayer_GoodTipp()
         {
             return Player_Model.SecondPlayer_GoodTipp.Count;
+        }
+
+        public void NumberOfRoundsAdd()
+        {
+             Player_Model.NumberOfRounds++;
+        }
+
+        public int NumberOfRounds()
+        {
+            return Player_Model.NumberOfRounds;
+        }
+
+        public int FirstPlayerHits()
+        {
+            return Player_Model.NumberOfFirstPlayerHits;
+        }
+
+        public int SecondPlayerHits()
+        {
+            return Player_Model.NumberOfSecondPlayerHits;
+        }
+
+        public int FirstShip2()
+        {
+            return Player_Model.FirstShip2;
+        }
+        public int FirstShip3()
+        {
+            return Player_Model.FirstShip3;
+        }
+        public int FirstShip4()
+        {
+            return Player_Model.FirstShip4;
+        }
+        public int FirstShip5()
+        {
+            return Player_Model.FirstShip5;
+        }
+
+        public int SecondShip2()
+        {
+            return Player_Model.SecondShip2;
+        }
+        public int SecondShip3()
+        {
+            return Player_Model.SecondShip3;
+        }
+        public int SecondShip4()
+        {
+            return Player_Model.SecondShip4;
+        }
+        public int SecondShip5()
+        {
+            return Player_Model.SecondShip5;
         }
     }
 }

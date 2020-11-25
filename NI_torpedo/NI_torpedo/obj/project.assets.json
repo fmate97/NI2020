@@ -58,11 +58,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\c#\\menni fog!\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+      "projectUniqueName": "D:\\c#\\menni\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
       "projectName": "NI_torpedo",
-      "projectPath": "D:\\c#\\menni fog!\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+      "projectPath": "D:\\c#\\menni\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
       "packagesPath": "C:\\Users\\rozi1\\.nuget\\packages\\",
-      "outputPath": "D:\\c#\\menni fog!\\NI_torpedo\\NI_torpedo\\obj\\",
+      "outputPath": "D:\\c#\\menni\\NI_torpedo\\NI_torpedo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

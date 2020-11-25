@@ -24,6 +24,7 @@ namespace NI_torpedo.View
         private bool _first;
         private bool _exit = false;
         private Canvas _ship;
+        int _shipIndex = 0;
         
         private Dictionary<Canvas, Visibility> ShipName = new Dictionary<Canvas, Visibility>();
        
@@ -47,14 +48,14 @@ namespace NI_torpedo.View
         {
             if (_first)
             {
-                NameLabel.Content = $"Kérem helyeze le a hajóit {_firstPlayer}";
+                NameLabel.Content = $"Kérem helyezze le a hajóit {_firstPlayer}";
                 GameTable_Init(Ship_Put_GameTable);
                 Ships_table.Visibility = Visibility.Visible;
                 Ship_Setup(false);
             }
             else
             {
-                NameLabel.Content = $"Kérem helyeze le a hajóit {_secondPlayer}";
+                NameLabel.Content = $"Kérem helyezze le a hajóit {_secondPlayer}";
                 GameTable_Init(Ship_Put_GameTable);
                 Ships_table.Visibility = Visibility.Visible;
                 Ship_Setup(true);
@@ -136,6 +137,9 @@ namespace NI_torpedo.View
 
         private void Ship_Put_Gametable_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
+            Vector vector = new Vector();
+
             try
             {
                 if (_ship != null  && ShipName[_ship] == Visibility.Visible)
@@ -147,17 +151,23 @@ namespace NI_torpedo.View
                     {
                         if (Player_viewmodel.First_Ship_Check(eger_pos_vector, length))
                         {
+                            Player_viewmodel.FirstShipNewList();
+                            _shipIndex++;
                             for (int i = 0; i < length; i++)
                             {
                                 if (Player_viewmodel.Fuggoleges_Get())
                                 {
-                                    Jatektabla_Setup(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i), Ship_Put_GameTable, Brushes.Blue);
-                                    Player_viewmodel.FirstShipAdd(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i));
+                                    vector = new Vector(eger_pos_vector.X, eger_pos_vector.Y + i);
+                                    Jatektabla_Setup(vector, Ship_Put_GameTable, Brushes.Blue);
+                                    Player_viewmodel.FirstShipAdd(vector);
+                                    Player_viewmodel.FirstShipAddVector(_shipIndex - 1, vector);
                                 }
                                 else
                                 {
-                                    Jatektabla_Setup(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y), Ship_Put_GameTable, Brushes.Blue);
-                                    Player_viewmodel.FirstShipAdd(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y));
+                                    vector = new Vector(eger_pos_vector.X + i, eger_pos_vector.Y);
+                                    Jatektabla_Setup(vector, Ship_Put_GameTable, Brushes.Blue);
+                                    Player_viewmodel.FirstShipAdd(vector);
+                                    Player_viewmodel.FirstShipAddVector(_shipIndex- 1, vector);
                                 }
                             }
                             List<Canvas> keys = new List<Canvas>(ShipName.Keys);
@@ -177,19 +187,25 @@ namespace NI_torpedo.View
                     }
                     else
                     {
+                        Player_viewmodel.SecondShipNewList();
+                        _shipIndex++;
                         if (Player_viewmodel.Second_Ship_Check(eger_pos_vector, length))
                         {
                             for (int i = 0; i < length; i++)
                             {
                                 if (Player_viewmodel.Fuggoleges_Get())
                                 {
-                                    Jatektabla_Setup(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i), Ship_Put_GameTable, Brushes.Blue);
-                                    Player_viewmodel.SecondShipAdd(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i));
+                                    vector = new Vector(eger_pos_vector.X, eger_pos_vector.Y + i);
+                                    Jatektabla_Setup(vector, Ship_Put_GameTable, Brushes.Blue);
+                                    Player_viewmodel.SecondShipAdd(vector);
+                                    Player_viewmodel.SecondShipAddVector(_shipIndex-1, vector);
                                 }
                                 else
                                 {
-                                    Jatektabla_Setup(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y), Ship_Put_GameTable, Brushes.Blue);
-                                    Player_viewmodel.SecondShipAdd(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y));
+                                    vector = new Vector(eger_pos_vector.X + i, eger_pos_vector.Y);
+                                    Jatektabla_Setup(vector, Ship_Put_GameTable, Brushes.Blue);
+                                    Player_viewmodel.SecondShipAdd(vector);
+                                    Player_viewmodel.SecondShipAddVector(_shipIndex - 1, vector);
                                 }
                             }
                             List<Canvas> keys = new List<Canvas>(ShipName.Keys);
@@ -247,6 +263,7 @@ namespace NI_torpedo.View
                 else
                 {
                     _first = false;
+                    _shipIndex = 0;
                     Init_Game();
                 }
             }
@@ -258,9 +275,11 @@ namespace NI_torpedo.View
                 }
                 else
                 {
-                    MessageBox.Show("Indul a játék");
-                    Player_GameWindow player_Game = new Player_GameWindow(_firstPlayer, _secondPlayer, Player_viewmodel.FirstShipGet(), Player_viewmodel.SecondShipGet());
+                    Player_GameWindow player_Game = new Player_GameWindow(_firstPlayer, _secondPlayer, 
+                        Player_viewmodel.FirstShipGet(), Player_viewmodel.SecondShipGet(), 
+                        Player_viewmodel.FirstShip(), Player_viewmodel.SecondShip());
                     player_Game.Show();
+                    _exit = true;
                     this.Close();
                 }
             }

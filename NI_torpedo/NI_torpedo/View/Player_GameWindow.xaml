@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NI_torpedo.View"
         mc:Ignorable="d"
-         Title="Torpedo" Height="470" Width="890" ResizeMode="CanMinimize"
+         Title="Torpedo" Height="470" Width="900" ResizeMode="CanMinimize"
         Keyboard.KeyDown="Window_KeyDown"
         WindowStartupLocation="CenterScreen" Icon="/View/torpedo.png">
     <StackPanel>
@@ -61,7 +61,7 @@
             <StackPanel x:Name="SecondPayer_Scoreboard" Margin="10, 0, 0, 0">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Körök száma: "/>
-                    <Label Content="0" x:Name="Second_Number" Margin="12, 0, 0, 0"/>
+                    <Label Content="0" x:Name="Second_NumberOfRounds" Margin="12, 0, 0, 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Saját találatok: "/>
@@ -79,17 +79,17 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="3-as hajók:"/>
-                    <Label x:Name="SecondShip23" Content="0"/>
+                    <Label x:Name="SecondShip3" Content="0"/>
                     <Label Content="/ 4"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="4-es hajók:"/>
-                    <Label x:Name="SecondShip24" Content="0"/>
+                    <Label x:Name="SecondShip4" Content="0"/>
                     <Label Content="/ 2"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="5-ös hajók:"/>
-                    <Label x:Name="SecondShip25" Content="0"/>
+                    <Label x:Name="SecondShip5" Content="0"/>
                     <Label Content="/ 1"/>
                 </StackPanel>
             </StackPanel>

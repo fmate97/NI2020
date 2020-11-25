@@ -1,4 +1,5 @@
-﻿using NI_torpedo.ViewModel;
+﻿using NI_torpedo.Model;
+using NI_torpedo.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,23 +22,22 @@ namespace NI_torpedo.View
         GameWindow_Player_viewmodel Player_viewmodel;
         ShipPut Ship= new ShipPut();
 
-        public string FirstPlayer1 { get; }
-        public string SecondPlayer1 { get; }
-        
-
-        public Player_GameWindow(string firstName, string secondName, List<Vector> firstPlayerShip, List<Vector> secondPlayerShip)
+        public Player_GameWindow(string firstName, string secondName,
+            List<Vector> firstPlayerShip, List<Vector> secondPlayerShip, 
+            List<List<ShipUnit>> FirstShip, List<List<ShipUnit>> SecondShip)
         {
             InitializeComponent();
-            Player_viewmodel = new GameWindow_Player_viewmodel(firstName, secondName, firstPlayerShip, secondPlayerShip);
+            Player_viewmodel = new GameWindow_Player_viewmodel(firstName, secondName, firstPlayerShip, 
+                secondPlayerShip, FirstShip, SecondShip);
             Init_Game();
         }
 
-       
+
 
         private void Init_Game()
         {
-            FirstPlayer.Content = Player_viewmodel.FirstName();
-            SecondPlayer.Content = Player_viewmodel.SecondName();
+            FirstPlayer.Content = ($"Itt tippelj {Player_viewmodel.FirstName()}!");
+            SecondPlayer.Content = ($"Itt tippelj {Player_viewmodel.SecondName()}!");
             Ship.GameTable_Init(FirstPlayer_TippTable);
             Ship.GameTable_Init(SecondPlayer_TippTable);
             Player_viewmodel.NextPlayerSet(Player_viewmodel.RandomStart());
@@ -60,12 +60,17 @@ namespace NI_torpedo.View
                 {
                     GameBoard_Setup(eger_pos_vector, FirstPlayer_TippTable, color);
                     Player_viewmodel.NextPlayerSet(false); 
-                    GameEnd(true);
                     Player_viewmodel.NextPlayerSet(false);
                     NextPlayer(Player_viewmodel.NextPlayer());
+                    ScoreBoard();
+                    GameEnd(true);
 
                 }
 
+            }
+            else
+            {
+                MessageBox.Show("Nem te jössz!");
             }
         }
 
@@ -84,11 +89,17 @@ namespace NI_torpedo.View
                 {
                     GameBoard_Setup(eger_pos_vector, SecondPlayer_TippTable, color);
                     Player_viewmodel.NextPlayerSet(true);
-                    GameEnd(false);
                     Player_viewmodel.NextPlayerSet(true);
                     NextPlayer(Player_viewmodel.NextPlayer());
+                    Player_viewmodel.NumberOfRoundsAdd();
+                    ScoreBoard();
+                    GameEnd(false);
                 }
 
+            }
+            else
+            {
+                MessageBox.Show("Nem te jössz!");
             }
         }
 
@@ -144,6 +155,30 @@ namespace NI_torpedo.View
             Canvas.SetTop(shape, position.Y * unitY + (margo / 2));
             Canvas.SetLeft(shape, position.X * unitX + (margo / 2));
             canvas_name.Children.Add(shape);
+        }
+
+        private void ScoreBoard()
+        {
+            First_NumberOfRound.Content = Player_viewmodel.NumberOfRounds();
+            Second_NumberOfRounds.Content = Player_viewmodel.NumberOfRounds();
+
+            First_FirstPlayer_Hits.Content = Player_viewmodel.FirstPlayerHits();
+            Second_SecondPlayer_Hits.Content = Player_viewmodel.SecondPlayerHits();
+
+            First_SecondPlayer_Hits.Content = Player_viewmodel.SecondPlayerHits();
+            Second_FirstPlayer_Hits.Content = Player_viewmodel.FirstPlayerHits();
+
+            FirstShip2.Content = Player_viewmodel.FirstShip2();
+            SecondShip2.Content = Player_viewmodel.SecondShip2();
+
+            FirstShip3.Content = Player_viewmodel.FirstShip3();
+            SecondShip3.Content = Player_viewmodel.SecondShip3();
+
+            FirstShip4.Content = Player_viewmodel.FirstShip4();
+            SecondShip4.Content = Player_viewmodel.SecondShip4();
+
+            FirstShip5.Content = Player_viewmodel.FirstShip5();
+            SecondShip5.Content = Player_viewmodel.SecondShip5();
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
