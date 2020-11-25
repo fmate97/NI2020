@@ -182,12 +182,17 @@ namespace NI_torpedo.ViewModel
             {
                 Model.Elozo_Tipp_Siker = true;
             }
+            else if(Model.Lehelyezheto_Tippek_Szama() == 0 && Model.Elozo_Tipp_Siker)
+            {
+                Model.Elozo_Tipp_Siker = false;
+            }
             if (!Model.Elozo_Tipp_Siker)
             {
-                Vector tipp = new Vector(Model.Get_Random_Number(Model.Tabla_Merete - 1), Model.Get_Random_Number(Model.Tabla_Merete - 1));
+                Vector tipp;
                 bool ujra_general = true;
                 while (ujra_general)
                 {
+                    tipp = new Vector(Model.Get_Random_Number(Model.Tabla_Merete - 1), Model.Get_Random_Number(Model.Tabla_Merete - 1));
                     ujra_general = false;
                     foreach (Vector tipp_seged in Model.Al_Jo_Tipp)
                     {
