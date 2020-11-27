@@ -175,16 +175,36 @@ namespace NI_torpedo.ViewModel
             Model.Al_Jo_Tipp = Al_Jo_Tipp;
         }
 
+        public void Nehezseg_Beallitas(bool nehez)
+        {
+            Model.Nehez = nehez;
+        }
+
         public List<int> Al_Tipp()
         {
             List<int> return_value = new List<int>();
-            if (Model.Lehelyezheto_Tippek_Szama() > 0)
+            if (!Model.Nehez)
             {
-                Model.Elozo_Tipp_Siker = true;
+                if (Model.Lehelyezheto_Tippek_Szama(Model.Sikeres_Tipp) > 0)
+                {
+                    Model.Elozo_Tipp_Siker = true;
+                }
+                else if (Model.Lehelyezheto_Tippek_Szama(Model.Sikeres_Tipp) == 0 && Model.Elozo_Tipp_Siker)
+                {
+                    Model.Elozo_Tipp_Siker = false;
+                }
             }
-            else if(Model.Lehelyezheto_Tippek_Szama() == 0 && Model.Elozo_Tipp_Siker)
+            else
             {
-                Model.Elozo_Tipp_Siker = false;
+                Model.Nehez_Seged = 0;
+                if (Model.Lehelyezheto_Tippek_Szama_Nehez() > 0)
+                {
+                    Model.Elozo_Tipp_Siker = true;
+                }
+                else if (Model.Lehelyezheto_Tippek_Szama_Nehez() == 0 && Model.Elozo_Tipp_Siker)
+                {
+                    Model.Elozo_Tipp_Siker = false;
+                }
             }
             if (!Model.Elozo_Tipp_Siker)
             {

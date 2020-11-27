@@ -24,8 +24,8 @@ namespace NI_torpedo.ViewModel
         private Random _rnd = new Random();
         private DataSave_JSON _dataSave_JSON = new DataSave_JSON();
         private Restore_File _restor_file_JSON = new Restore_File();
-        private bool _mentett_jatek = false, _fuggoleges = false, _elozo_tipp_siker, _game_end = false;
-        private int _player_number;
+        private bool _mentett_jatek = false, _fuggoleges = false, _elozo_tipp_siker, _game_end = false, _nehez;
+        private int _player_number, _nehez_seged;
         private readonly int _tabla_merete = 10, _tabla_magassaga = 300, _tabla_szelessege = 300, _margo_merete = 3;
         private readonly int[] _hajok_hossza = { 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2 };
         private string _player_name, _winner_name, _al_name = "Al";
@@ -44,6 +44,17 @@ namespace NI_torpedo.ViewModel
         {
             get { return _player_name; }
             set { _player_name = value; }
+        }
+
+        public int Nehez_Seged
+        {
+            set { _nehez_seged = value; }
+        }
+
+        public bool Nehez
+        {
+            get { return _nehez; }
+            set { _nehez = value; }
         }
 
         public bool Game_End
@@ -373,42 +384,62 @@ namespace NI_torpedo.ViewModel
             }
         }
 
-        public int Lehelyezheto_Tippek_Szama()
+        public int Lehelyezheto_Tippek_Szama_Nehez()
+        {
+            int return_value = 0;
+            if (_nehez_seged == _al_jo_tipp.Count)
+            {
+                return Lehelyezheto_Tippek_Szama(_sikeres_tipp);
+            }
+            else if (Lehelyezheto_Tippek_Szama(_sikeres_tipp) == 0)
+            {
+                _nehez_seged++;
+                _sikeres_tipp = _al_jo_tipp[Al_Jo_Tipp.Count - _nehez_seged];
+                return_value = Lehelyezheto_Tippek_Szama_Nehez();
+            }
+            else
+            {
+                return Lehelyezheto_Tippek_Szama(_sikeres_tipp);
+            }
+            return return_value;
+        }
+
+        public int Lehelyezheto_Tippek_Szama(Vector Tipp)
         {
             int return_value = 0;
 
-            if (_sikeres_tipp.X > 0)
+            if (Tipp.X > 0)
             {
                 return_value++;
             }
-            if (_sikeres_tipp.X < _tabla_merete - 1)
+            if (Tipp.X < _tabla_merete - 1)
             {
                 return_value++;
             }
-            if (_sikeres_tipp.Y > 0)
+            if (Tipp.Y > 0)
             {
                 return_value++;
             }
-            if (_sikeres_tipp.Y < _tabla_merete - 1)
+            if (Tipp.Y < _tabla_merete - 1)
             {
                 return_value++;
             }
 
             foreach (Vector item in _al_rossz_tipp)
             {
-                if (item.X == _sikeres_tipp.X - 1 && item.Y == _sikeres_tipp.Y)
+                if (item.X == Tipp.X - 1 && item.Y == Tipp.Y)
                 {
                     return_value--;
                 }
-                else if (item.X == _sikeres_tipp.X + 1 && item.Y == _sikeres_tipp.Y)
+                else if (item.X == Tipp.X + 1 && item.Y == Tipp.Y)
                 {
                     return_value--;
                 }
-                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y - 1)
+                else if (item.X == Tipp.X && item.Y == Tipp.Y - 1)
                 {
                     return_value--;
                 }
-                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y + 1)
+                else if (item.X == Tipp.X && item.Y == Tipp.Y + 1)
                 {
                     return_value--;
                 }
@@ -416,19 +447,19 @@ namespace NI_torpedo.ViewModel
 
             foreach (Vector item in _al_jo_tipp)
             {
-                if (item.X == _sikeres_tipp.X - 1 && item.Y == _sikeres_tipp.Y)
+                if (item.X == Tipp.X - 1 && item.Y == Tipp.Y)
                 {
                     return_value--;
                 }
-                else if (item.X == _sikeres_tipp.X + 1 && item.Y == _sikeres_tipp.Y)
+                else if (item.X == Tipp.X + 1 && item.Y == Tipp.Y)
                 {
                     return_value--;
                 }
-                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y - 1)
+                else if (item.X == Tipp.X && item.Y == Tipp.Y - 1)
                 {
                     return_value--;
                 }
-                else if (item.X == _sikeres_tipp.X && item.Y == _sikeres_tipp.Y + 1)
+                else if (item.X == Tipp.X && item.Y == Tipp.Y + 1)
                 {
                     return_value--;
                 }

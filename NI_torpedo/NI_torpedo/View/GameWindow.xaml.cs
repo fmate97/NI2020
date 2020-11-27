@@ -187,12 +187,21 @@ namespace NI_torpedo.View
                 {
                     MessageBox.Show("Nem helyezte le az összes hajót!");
                 }
+                else if (!(nehezseg_valasztas_combobox.SelectedIndex == 1 || nehezseg_valasztas_combobox.SelectedIndex == 2))
+                {
+                    MessageBox.Show("Nem választott nehézségi szintet!");
+                }
                 else
                 {
                     _viewModel.Mentett_Jatek_Set(true);
                     hajok_elhelyezese.Visibility = Visibility.Collapsed;
                     eredmenyjelzo.Visibility = Visibility.Visible;
                     _viewModel.Ellenfel_Hajo_Mentes();
+                    nehezseg_valasztas_combobox.IsEnabled = false;
+                    if (nehezseg_valasztas_combobox.SelectedIndex == 1)
+                        _viewModel.Nehezseg_Beallitas(false);
+                    else
+                        _viewModel.Nehezseg_Beallitas(true);
                     Start_Game();
                 }
             }

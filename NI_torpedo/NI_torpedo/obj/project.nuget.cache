@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tuQ0R0XElKjUqzPsMyMZQbhAiA6qeiKaCOv+6G/jBBBaIWtI/FWZ0KHINNEXoOQHOTNQaDspgXNoVyF9Xa7VVw==",
+  "dgSpecHash": "KbwRLK++MVdnHqhkWUyF+tjOvcb38vwzI4qyK24+7nvCH3q8MWuIobLT+XGel5ogqXeQ0OlFEydCA1oK9Srm0w==",
   "success": true,
-  "projectFilePath": "D:\\c#\\menni\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+  "projectFilePath": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\rozi1\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+    "C:\\Users\\fmate\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
 }

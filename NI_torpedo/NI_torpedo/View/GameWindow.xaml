@@ -18,8 +18,13 @@
             <Label x:Name="kovetkezoPlayer" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Al játéktábla:" Margin="25, 0, 0, 0" FontWeight="Bold"/>
-            <Label Content="Saját játéktábla:" Margin="244, 0, 0, 0" FontWeight="Bold"/>
+            <Label Content="Al játéktábla:" Margin="25, 0, 0, 0" VerticalAlignment="Bottom" FontWeight="Bold"/>
+            <Label Content="Saját játéktábla:" Margin="244, 0, 0, 0" VerticalAlignment="Bottom" FontWeight="Bold"/>
+            <ComboBox x:Name="nehezseg_valasztas_combobox" Width="140" SelectedIndex="0" Visibility="Visible" Margin="206, 0, 0, 5" HorizontalContentAlignment="Center">
+                <ComboBoxItem Content="válassz nehézséget..." Visibility="Collapsed" />
+                <ComboBoxItem Content="könnyű" />
+                <ComboBoxItem Content="nehéz" />
+            </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Canvas x:Name="masik_player_jatektabla" Background="Black" MouseLeftButtonDown="Masik_Player_Jatektabla_MouseLeftButtonDown" Height="300" Width="300" Margin="25,0,25,0"/>
