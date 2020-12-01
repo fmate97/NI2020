@@ -7,13 +7,17 @@
         mc:Ignorable="d"
         Title="Torpedo" Height="450" Width="500" ResizeMode="CanMinimize"
         Keyboard.KeyDown="Window_KeyDown" 
-        WindowStartupLocation="CenterScreen" Icon="/View/torpedo.png">
+        WindowStartupLocation="CenterScreen" Icon="/Images/torpedo.png">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/images.jpg">
+        </ImageBrush>
+    </Window.Background>
     <StackPanel>
         <StackPanel Background="Black" Orientation="Horizontal">
             <Label Margin="15, 0, 0, 0" Foreground="White"  Content="F1: help" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="28">
-            <Label x:Name="NameLabel" FontWeight="Bold" Foreground="Red" Width="421"/>
+            <Label x:Name="NameLabel" FontWeight="Bold" Width="421"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Canvas x:Name="Ship_Put_GameTable" Background="Black" MouseLeftButtonDown="Ship_Put_Gametable_MouseLeftButtonDown" Height="300" Width="300" Margin="10,0,0,0"/>
@@ -40,9 +44,9 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
-            <Button x:Name="Save_Button" Content="Mentés" Margin="45, 0, 50, 0" FontSize="16" FontWeight="Bold" Click="Save_Button_Click"/>
-            <Button x:Name="Clear_Button" Content="Törlés" Margin="0,0,50,0" FontSize="16" FontWeight="Bold" Click="Clear_Button_Click" />
-            <Button x:Name="Exit_Button" Content="Kilépés" FontSize="16" FontWeight="Bold" Click="Exit_Button_Click"/>
+            <Button x:Name="Save_Button" Content="Mentés" Margin="10, 0, 40, 0" FontSize="16" FontWeight="Bold" Click="Save_Button_Click" Width="73" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
+            <Button x:Name="Clear_Button" Content="Törlés" Margin="0,0,40,0" FontSize="16" FontWeight="Bold" Click="Clear_Button_Click" Width="69" Background="#FF181FA3" Foreground="#FFC5BBBB" />
+            <Button x:Name="Exit_Button" Content="Kilépés" FontSize="16" FontWeight="Bold" Click="Exit_Button_Click" Width="78" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
         </StackPanel>
     </StackPanel>
 </Window>

@@ -5,98 +5,104 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NI_torpedo.View"
         mc:Ignorable="d"
-         Title="Torpedo" Height="470" Width="900" ResizeMode="CanMinimize"
+         Title="Torpedo" Height="470" Width="950" ResizeMode="CanMinimize"
         Keyboard.KeyDown="Window_KeyDown"
-        WindowStartupLocation="CenterScreen" Icon="/View/torpedo.png">
+        WindowStartupLocation="CenterScreen" Icon="/Images/torpedo.png">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/sea.jpg">
+        </ImageBrush>
+    </Window.Background>
+
     <StackPanel>
         <StackPanel Background="Black" Orientation="Horizontal">
             <Label Margin="15, 0, 0, 0" Foreground="White"  Content="F1: help" MouseLeftButtonDown="Help_MouseLeftButtonDown" HorizontalAlignment="Left"/>
-            <Label Margin="15, 0, 0, 0" Foreground="White"  Content="Shift + F2: Al hajóinak megmutatása" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="31">
-            <Label x:Name="Next" FontWeight="Bold" Width="198" Margin="350,0,0,0"/>
+            <Label x:Name="Next" FontWeight="Bold" Width="198" Margin="350,0,0,0" FontSize="16" FontStyle="Normal"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="30" Width="886">
-            <Label x:Name="FirstPlayer" Margin="130, 0, 0, 0" FontWeight="Bold" Width="274"/>
-            <Label x:Name="SecondPlayer" Margin="50, 0, 0, 0" FontWeight="Bold" Width="292"/>
+            <Label x:Name="FirstPlayer" Margin="130, 0, 0, 0" FontWeight="Bold"  FontSize="16" Width="274"/>
+            <Label x:Name="SecondPlayer" Margin="50, 0, 0, 0" FontWeight="Bold" FontSize="16" Width="292"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel x:Name="FirstPlayer_Scoreboard" Margin="10, 0, 0,0 ">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Körök száma: "/>
-                    <Label Content="0" x:Name="First_NumberOfRound" Margin="12, 0, 0, 0"/>
+                    <Label Content="Körök száma: " FontSize="14" FontWeight="Bold" FontStyle="Normal" Height="33"/>
+                    <Label Content="0" x:Name="First_NumberOfRound" Margin="12, 0, 0, 0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Saját találatok: "/>
-                    <Label Content="0" x:Name="First_FirstPlayer_Hits" Margin="5, 0, 0, 0"/>
+                    <Label Content="Saját találatok: " FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="33"/>
+                    <Label Content="0" x:Name="First_FirstPlayer_Hits" Margin="5, 0, 0, 0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Ellenfél találatai:"/>
-                    <Label Content="0" x:Name="First_SecondPlayer_Hits"/>
+                    <Label Content="Ellenfél találatai:" FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="63"/>
+                    <Label Content="0" x:Name="First_SecondPlayer_Hits" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
-                <Label Content="Elsülyesztett:" />
+                <Label Content="Elsülyesztett:" FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="33"/>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="2-es hajók:"/>
-                    <Label x:Name="FirstShip2" Content="0"/>
-                    <Label Content="/ 4"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label  Content="3-as hajók:"/>
-                    <Label x:Name="FirstShip3" Content="0"/>
-                    <Label Content="/ 4"/>
+                    <Label  Content="2-es hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label x:Name="FirstShip2" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label Content="/ 4" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="4-es hajók:"/>
-                    <Label x:Name="FirstShip4" Content="0"/>
-                    <Label Content="/ 2"/>
+                    <Label  Content="3-as hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label x:Name="FirstShip3" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label Content="/ 4" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="5-ös hajók:"/>
-                    <Label x:Name="FirstShip5" Content="0"/>
-                    <Label Content="/ 1"/>
+                    <Label  Content="4-es hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label x:Name="FirstShip4" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label Content="/ 2" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="5-ös hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label x:Name="FirstShip5" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label Content="/ 1" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
             <Canvas x:Name="FirstPlayer_TippTable" Background="Black" MouseLeftButtonDown="FirstPlayer_TippTable_MouseLeftButtonDown" Height="300" Width="300" Margin="5,0,25,0"/>
             <Canvas x:Name="SecondPlayer_TippTable" Background="Black" MouseLeftButtonDown="SecondPlayer_TippTable_MouseLeftButtonDown" Height="300" Width="300"/>
             <StackPanel x:Name="SecondPayer_Scoreboard" Margin="10, 0, 0, 0">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Körök száma: "/>
-                    <Label Content="0" x:Name="Second_NumberOfRounds" Margin="12, 0, 0, 0"/>
+                    <Label Content="Körök száma: " FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="33"/>
+                    <Label Content="0" x:Name="Second_NumberOfRounds" Margin="12, 0, 0, 0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Saját találatok: "/>
-                    <Label Content="0" x:Name="Second_SecondPlayer_Hits" Margin="5, 0, 0, 0"/>
+                    <Label Content="Saját találatok: " FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="33"/>
+                    <Label Content="0" x:Name="Second_SecondPlayer_Hits" Margin="5, 0, 0, 0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Ellenfél találatai:"/>
-                    <Label Content="0" x:Name="Second_FirstPlayer_Hits"/>
+                    <Label Content="Ellenfél találatai:" FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="63"/>
+                    <Label Content="0" x:Name="Second_FirstPlayer_Hits" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
-                <Label Content="Elsülyesztett:" />
+                <Label Content="Elsülyesztett:" FontWeight="Bold" FontStyle="Normal" FontSize="14" Height="33"/>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="2-es hajók:"/>
-                    <Label x:Name="SecondShip2" Content="0"/>
-                    <Label Content="/ 4"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label  Content="3-as hajók:"/>
-                    <Label x:Name="SecondShip3" Content="0"/>
-                    <Label Content="/ 4"/>
+                    <Label  Content="2-es hajók:" FontWeight="Bold" FontStyle="Normal" Height="28" FontSize="14"/>
+                    <Label x:Name="SecondShip2" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label Content="/ 4" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="4-es hajók:"/>
-                    <Label x:Name="SecondShip4" Content="0"/>
-                    <Label Content="/ 2"/>
+                    <Label  Content="3-as hajók:" FontWeight="Bold" FontStyle="Normal" Height="28" FontSize="14"/>
+                    <Label x:Name="SecondShip3" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label Content="/ 4" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="5-ös hajók:"/>
-                    <Label x:Name="SecondShip5" Content="0"/>
-                    <Label Content="/ 1"/>
+                    <Label  Content="4-es hajók:" FontWeight="Bold" FontStyle="Normal" Height="28" FontSize="14"/>
+                    <Label x:Name="SecondShip4" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label Content="/ 2" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="5-ös hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
+                    <Label x:Name="SecondShip5" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label Content="/ 1" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
-            <Button x:Name="exit" Content="Feladás" FontSize="16" FontWeight="Bold" Margin="510, 0, 0, 0" Click="Exit_Button_Click"/>
-            <Button x:Name="Later" Content="Későbbi folytatás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Later_Continue" />
+            <Button x:Name="exit" Content="Feladás" FontSize="16" FontWeight="Bold" Margin="480, 0, 0, 0" Click="Exit_Button_Click" BorderBrush="#FF40457A" Width="97" Background="#FF181FA3" Foreground="#FFC5BBBB" />
+            <Button x:Name="Later" Content="Későbbi folytatás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Later_Continue" BorderBrush="#FF40457A" Width="152" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
         </StackPanel>
+
     </StackPanel>
+
 </Window>

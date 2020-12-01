@@ -39,16 +39,6 @@ namespace NI_torpedo.Model
         public int[] FirstPlayer_ScoreBoardShip { get; set; } = new int[4];
         public int[] SecondPlayer_ScoreBoardShip { get; set; } = new int[4];
 
-        /*
-        public int FirstShip2 { get; set; } = 0;
-        public int FirstShip3 { get; set; } = 0;
-        public int FirstShip4 { get; set; } = 0;
-        public int FirstShip5 { get; set; } = 0;
-        public int SecondShip2 { get; set; } = 0;
-        public int SecondShip3 { get; set; } = 0;
-        public int SecondShip4 { get; set; } = 0;
-        public int SecondShip5 { get; set; } = 0;*/
-
         public GameWindow_Player_model(string firstName, string secondName)
         {
             FirstName = firstName;
@@ -239,7 +229,7 @@ namespace NI_torpedo.Model
         {
             if (File.Exists(Globals.Restore_File_Name))
             {
-                String jsonString = File.ReadAllText(Globals.Restore_File_Name);
+                string jsonString = File.ReadAllText(Globals.Restore_File_Name);
                 _restor_file_JSON = JsonSerializer.Deserialize<Restore_File>(jsonString);
 
                 /*if (_restor_file_JSON.CheckSum != _restor_file_JSON.CheckSum_Calc())
@@ -276,7 +266,7 @@ namespace NI_torpedo.Model
 
                 List<int> helper = _restor_file_JSON.Scoreboard;
                 {
-                    NumberOfRounds = helper[0] - 1;
+                    NumberOfRounds = helper[0];
                     NumberOfFirstPlayerHits = helper[1];
                     NumberOfSecondPlayerHits = helper[2];
                 }

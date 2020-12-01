@@ -10,7 +10,6 @@ namespace NI_torpedo.View
         public HelpWindow()
         {
             InitializeComponent();
-            rules.Content = "Játékszabály";
             game.Text = "Mindkét játékos előtt két darab tábla van. " +
                 "Az egyiken ő jelöli a lövéseit, a másikon a saját hajói vannak, és az ellenfél lövései. " +
                 "A játékosok felváltva tippelnek, és mindketten rákattintanak a tippelt területre. " +

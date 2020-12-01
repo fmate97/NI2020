@@ -6,10 +6,14 @@
         mc:Ignorable="d"
         Title="Torpedo Help" Height="525" Width="350"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize" Icon="/View/torpedo.png" >
+        ResizeMode="NoResize" Icon="/Images/torpedo.png" >
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/blue.jpg">
+        </ImageBrush>
+    </Window.Background>
     <Grid>
-        <Label x:Name="rules" Content="Label" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="94"/>
+        <Label x:Name="rules" Content="Játékszabály" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="126" FontSize="16"/>
         <TextBlock x:Name="game" HorizontalAlignment="Left" Margin="10,41,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="400" Width="301" FontWeight="Bold"/>
-        <Button x:Name="back_button" Content="Vissza a játékhoz" HorizontalAlignment="Center" Margin="0,460,0,0" VerticalAlignment="Top" FontWeight="Bold" Click="Back_Button_Click"/>
+        <Button x:Name="back_button" Content="Vissza a játékhoz" HorizontalAlignment="Center" Margin="0,446,0,0" VerticalAlignment="Top" FontWeight="Bold" Click="Back_Button_Click" Height="34" Width="126" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
     </Grid>
 </Window>

@@ -4,75 +4,97 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Torpedo" Height="360" Width="600" ResizeMode="NoResize" Icon="/View/torpedo.png" WindowStartupLocation="CenterScreen">
+        Title="Torpedo" Height="430" Width="600" ResizeMode="NoResize" Icon="/Images/torpedo.png" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/blue.jpg">
+        </ImageBrush>
+    </Window.Background>
     <StackPanel>
         <StackPanel x:Name="nincsfile" Visibility="Collapsed">
             <Label Content="Jelenleg nincs mentett eredmény!" Foreground="Red" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel x:Name="vanfile" Visibility="Visible">
             <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
-                <Label Content="Player1 neve: " FontWeight="Bold" Margin="25, 0, 0, 0"/>
-                <Label x:Name="player1_name" Content="" Foreground="Blue"/>
-                <Label Content="Player2 neve: " FontWeight="Bold" Margin="50, 0, 0, 0"/>
-                <Label x:Name="player2_name" Content="" Foreground="Blue"/>
-                <Label Content="Nyertes: " FontWeight="Bold" Margin="50, 0, 0, 0"/>
-                <Label x:Name="nyertes_name" Content="" FontWeight="Bold" Foreground="Green"/>
+                <Label Content="1. játékos neve neve: " FontWeight="Bold" Margin="25, 0, 0, 0" FontSize="14"/>
+                <Label x:Name="player1_name" Content="" Foreground="#FF04045C" FontSize="14"/>
+                <Label Content="2. játékos neve: " FontWeight="Bold" Margin="50, 0, 0, 0" FontSize="14"/>
+                <Label x:Name="player2_name" Content="" Foreground="#FF04045C" FontSize="14"/>
+                <Label Content="Nyertes: " FontWeight="Bold" Margin="50, 0, 0, 0" FontSize="14"/>
+                <Label x:Name="nyertes_name" Content="" FontWeight="Bold" Foreground="Green" FontSize="14"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Körök száma: " Margin="25, 0, 0, 0"/>
+                <Label Content="Körök száma: " Margin="25, 0, 0, 0" FontWeight="Bold"/>
                 <Label x:Name="korok_szam" Content=""/>
-                <Label Content="Player1 találatai: " x:Name="player1_talalatai" Margin="50, 0, 0, 0"/>
+                <Label Content="Player1 találatai: " x:Name="player1_talalatai" Margin="50, 0, 0, 0" FontWeight="Bold"/>
                 <Label x:Name="player1_talalat" Content=""/>
-                <Label Content="Player2 találatai: " x:Name="player2_talalatai" Margin="50, 0, 0, 0"/>
+                <Label Content="Player2 találatai: " x:Name="player2_talalatai" Margin="50, 0, 0, 0" FontWeight="Bold"/>
                 <Label x:Name="player2_talalat" Content=""/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Height="150">
                 <StackPanel Orientation="Vertical" Margin="50, 0, 0, 0">
-                    <Label Content="Player1 elsülyesztett hajói: " x:Name="player1_hajoi"/>
+                    <Label Content="Player1 elsülyesztett hajói: " x:Name="player1_hajoi" FontWeight="Bold"/>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="2-es hajó (max = 4): " Margin="20, 0, 0, 0"/>
+                        <Label Content="2-es hajó (max = 4): " Margin="20, 0, 0, 0" FontWeight="Bold"/>
                         <Label x:Name="player1_hajo2" Content=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="3-es hajó (max = 4): " Margin="20, 0, 0, 0"/>
+                        <Label Content="3-es hajó (max = 4): " Margin="20, 0, 0, 0" FontWeight="Bold"/>
                         <Label x:Name="player1_hajo3" Content=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="4-es hajó (max = 2): " Margin="20, 0, 0, 0"/>
+                        <Label Content="4-es hajó (max = 2): " Margin="20, 0, 0, 0" FontWeight="Bold"/>
                         <Label x:Name="player1_hajo4" Content=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="5-es hajó (max = 1): " Margin="20, 0, 0, 0"/>
+                        <Label Content="5-es hajó (max = 1): " Margin="20, 0, 0, 0" FontWeight="Bold"/>
                         <Label x:Name="player1_hajo5" Content=""/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="50, 0, 0, 0">
-                    <Label Content="Player2 elsülyesztett hajói: " x:Name="player2_hajoi"/>
+                <StackPanel Orientation="Vertical" Margin="100, 0, 0, 0">
+                    <Label Content="Player2 elsülyesztett hajói: " x:Name="player2_hajoi" FontWeight="Bold"  Height="30">
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="3.768"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.855"/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="2-es hajó (max = 4): " Margin="20, 0, 0, 0"/>
+                        <Label Content="2-es hajó (max = 4): " Margin="20, 0, 0, 0" FontWeight="Bold" Height="30"/>
                         <Label x:Name="player2_hajo2" Content=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="3-es hajó (max = 4): " Margin="20, 0, 0, 0"/>
+                        <Label Content="3-es hajó (max = 4): " Margin="20, 0, 0, 0" FontWeight="Bold" Height="30"/>
                         <Label x:Name="player2_hajo3" Content=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="4-es hajó (max = 2): " Margin="20, 0, 0, 0"/>
+                        <Label Content="4-es hajó (max = 2): " Margin="20, 0, 0, 0" FontWeight="Bold"/>
                         <Label x:Name="player2_hajo4" Content=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="5-es hajó (max = 1): " Margin="20, 0, 0, 0"/>
+                        <Label Content="5-es hajó (max = 1): " Margin="20, 0, 0, 0" FontWeight="Bold" Height="30"/>
                         <Label x:Name="player2_hajo5" Content=""/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
-                <Button x:Name="elozo_button" IsEnabled="False" Content="Előző" Margin="25, 0, 175, 0" Click="Elozo_Button_Click"/>
+                <Button x:Name="elozo_button" IsEnabled="False" Content="Előző" Margin="25, 0, 175, 0" Click="Elozo_Button_Click" Width="50" Height="25"  Background="#FF181FA3" Foreground="#FFC5BBBB" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="1.242"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
                 <Label x:Name="oldal_szam_label" Content="1"/>
-                <Button x:Name="kovetkezo_button" IsEnabled="False" Content="Következő" Click="Kovetkezo_Button_Click" Margin="175, 0, 0, 0"/>
+                <Button x:Name="kovetkezo_button" IsEnabled="False" Content="Következő" Click="Kovetkezo_Button_Click" Margin="175, 0, 0, 0" Height="25" Width="71" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
             </StackPanel>
-            <Button Content="Törlés" Click="Torles_Button_Click" HorizontalAlignment="Center" Margin="10, 0, 125, 0"/>
+            <Button Content="Törlés" Click="Torles_Button_Click" HorizontalAlignment="Center" Margin="0, 0, 0, 0" Height="25" Width="72" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
         </StackPanel>
-        <Button Content="Kilépés" Click="Exit_Button_Click" HorizontalAlignment="Center" Margin="0, 30, 0, 0"/>
+        <Button Content="Kilépés" Click="Exit_Button_Click" HorizontalAlignment="Center" Margin="0, 30, 0, 0" Width="72" Height="25" Background="#FF181FA3" Foreground="#FFC5BBBB"/>
     </StackPanel>
 </Window>

@@ -4,20 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Torpedo" Height="350" Width="300" ResizeMode="CanMinimize"
+        Title="Torpedo" Height="444" Width="336" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen" 
-        KeyDown="Window_KeyDown" Icon="/View/torpedo.png" >
+        KeyDown="Window_KeyDown" Icon="/Images/torpedo.png" >
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/malta.jpg">
+        </ImageBrush>
+    </Window.Background>
     <StackPanel>
         <StackPanel Background="Black">
             <Label Margin="15, 0, 0, 0" Foreground="White"  Content="F1: help" MouseLeftButtonDown="Label_MouseLeftButtonDown" HorizontalAlignment="Left"/>
         </StackPanel>
-        <Label Content="Kivel szeretnél játszani?" Margin="0, 15, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <CheckBox x:Name="al" Content="Számítógép ellen" HorizontalAlignment="Left" Margin="25,15,0,0" VerticalAlignment="Top" Click="Al_Checked"/>
+        <Label Content="Kivel szeretnél játszani?" Margin="0, 25, 0, 0" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Height="88"/>
+        <CheckBox x:Name="al" Content="Számítógép ellen" HorizontalAlignment="Left" Margin="25,15,0,0" VerticalAlignment="Top" Click="Al_Checked" FontSize="14" FontWeight="Bold"/>
         <StackPanel Orientation="Horizontal" x:Name="player_name" Margin="50, 10, 0, 0" Visibility="Collapsed">
             <Label Content="Player name: "/>
             <TextBox x:Name="player_name_box" Text="" TextWrapping="Wrap" Height="20" Width="120" Margin="8, 0, 0, 0"/>
         </StackPanel>
-        <CheckBox x:Name="twoPlayer" Content="Másik játékos ellen" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Click="TwoPlayer_Checked"/>
+        <CheckBox x:Name="twoPlayer" Content="Másik játékos ellen" HorizontalAlignment="Left" Margin="25,25,0,0" Click="TwoPlayer_Checked" FontSize="14" FontWeight="Bold" Height="24"/>
         <StackPanel x:Name="player_name2" Margin="50, 10, 0, 0" Visibility="Collapsed">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Player1 name: "/>
@@ -28,10 +32,10 @@
                 <TextBox x:Name="player_name_box3" Text="" TextWrapping="Wrap" Height="20" Width="120"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Margin="0, 25, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Mentés" Click="Mentes_Button_Click" HorizontalAlignment="Center"/>
-            <Button Content="Eredmények" Margin="75, 0, 0, 0" Click="Eredmenyek_Button_Click"/>
+        <StackPanel Margin="0, 20, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Mentés" Click="Mentes_Button_Click" Background="#FF4D86CD" Foreground="#FF170000" Width="57" FontWeight="Bold"/>
+            <Button Content="Eredmények" Margin="75, 0, 0, 0" Click="Eredmenyek_Button_Click" Background="#FF4D86CD" Foreground="#FF170000" Width="84" FontWeight="Bold" Height="25"/>
         </StackPanel>
-        <Button Content="Kilépés" Click="Exit_Button_Click" HorizontalAlignment="Center" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+        <Button Content="Kilépés" Click="Exit_Button_Click" FontWeight="Bold" Background="#FF4D86CD" Foreground="#FF170000" Width="68" Height="25" Margin="0,20,0,0"/>
     </StackPanel>
 </Window>

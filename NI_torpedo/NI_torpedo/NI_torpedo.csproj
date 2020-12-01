@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Beach.jpg" />
+    <None Remove="Images\blue.jpg" />
+    <None Remove="Images\blue2.jpg" />
+    <None Remove="Images\help.jpg" />
+    <None Remove="Images\images.jpg" />
+    <None Remove="Images\malta.jpg" />
+    <None Remove="Images\sea.jpg" />
     <None Remove="View\torpedo.png" />
   </ItemGroup>
 
@@ -15,7 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="View\torpedo.png" />
+    <Resource Include="Images\blue.jpg" />
+    <Resource Include="Images\help.jpg" />
+    <Resource Include="Images\images.jpg" />
+    <Resource Include="Images\malta.jpg" />
+    <Resource Include="Images\sea.jpg" />
+    <Resource Include="Images\torpedo.png" />
   </ItemGroup>
 
 </Project>
