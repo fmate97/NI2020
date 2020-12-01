@@ -21,6 +21,10 @@ namespace NI_torpedo.ViewModel
             Player_Model.SecondName = secondName;
         }
 
+        public GameWindow_Player_viewmodel()
+        {
+        }
+
         public GameWindow_Player_viewmodel(string firstName, string secondName,
             List<Vector> firstPlayerShip, List<Vector> secondPlayerShip,
             List<List<ShipUnit>> FirstShip, List<List<ShipUnit>> SecondShip)
@@ -350,14 +354,34 @@ namespace NI_torpedo.ViewModel
             return Brushes.Red;
         }
 
-        public int FirstPlayer_GoodTipp()
+        public List<Vector> FirstPlayer_GoodTippGet()
+        {
+            return Player_Model.FirstPlayer_GoodTipp;
+        }
+
+        public int FirstPlayer_GoodTippCount()
         {
             return Player_Model.FirstPlayer_GoodTipp.Count;
         }
 
-        public int SecondPlayer_GoodTipp()
+        public List<Vector> FirstPlayer_WrongTippGet()
+        {
+            return Player_Model.FirstPlayer_WrongTipp;
+        }
+
+        public List<Vector> SecondPlayer_GoodTippGet()
+        {
+            return Player_Model.SecondPlayer_GoodTipp;
+        }
+
+        public int SecondPlayer_GoodTippCount()
         {
             return Player_Model.SecondPlayer_GoodTipp.Count;
+        }
+
+        public List<Vector> SecondPlayer_WrongTippGet()
+        {
+            return Player_Model.SecondPlayer_WrongTipp;
         }
 
         public void NumberOfRoundsAdd()
@@ -380,38 +404,34 @@ namespace NI_torpedo.ViewModel
             return Player_Model.NumberOfSecondPlayerHits;
         }
 
-        public int FirstShip2()
+        public int[] FirstPlayer_ScoreBoard()
         {
-            return Player_Model.FirstShip2;
-        }
-        public int FirstShip3()
-        {
-            return Player_Model.FirstShip3;
-        }
-        public int FirstShip4()
-        {
-            return Player_Model.FirstShip4;
-        }
-        public int FirstShip5()
-        {
-            return Player_Model.FirstShip5;
+            return Player_Model.FirstPlayer_ScoreBoardShip;
         }
 
-        public int SecondShip2()
+        public int[] SecondPlayer_ScoreBoard()
         {
-            return Player_Model.SecondShip2;
+            return Player_Model.SecondPlayer_ScoreBoardShip;
         }
-        public int SecondShip3()
+
+        public void Save_Game()
         {
-            return Player_Model.SecondShip3;
+           Player_Model.JSON_Save_Restore();
         }
-        public int SecondShip4()
+
+        public int Restore_Game()
         {
-            return Player_Model.SecondShip4;
+            return Player_Model.Restore_Game();
         }
-        public int SecondShip5()
+
+        public void WinnerName(string name)
         {
-            return Player_Model.SecondShip5;
+            Player_Model.WinnerName = name;
         }
-    }
+
+        public void Save()
+        {
+            Player_Model.JSON_Save();
+        }
+    }     
 }

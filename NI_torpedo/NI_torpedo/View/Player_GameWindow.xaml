@@ -96,7 +96,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
             <Button x:Name="exit" Content="Feladás" FontSize="16" FontWeight="Bold" Margin="510, 0, 0, 0" Click="Exit_Button_Click"/>
-            <Button x:Name="kesobb_folyt" Content="Későbbi folytatás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Kesobb_Folyt_Click" />
+            <Button x:Name="Later" Content="Későbbi folytatás" FontSize="16" FontWeight="Bold" Margin="50, 0, 0, 0" Click="Later_Continue" />
         </StackPanel>
     </StackPanel>
 </Window>

@@ -155,7 +155,7 @@ namespace NI_torpedo.ViewModel
         public int[] Eredmenyjelzo()
         {
             Model.Korok_Szama++;
-            return new int[] { Model.Korok_Szama, Model.Sajat_Talalat, Model.Ellenfel_Talalat, Model.Hajo2, Model.Hajo3, Model.Hajo4, Model.Hajo5 };
+            return new int[] { Model.Korok_Szama, Model.Sajat_Talalat, Model.Ellenfel_Talalat, Model.ShipScoreBoard[0], Model.ShipScoreBoard[1], Model.ShipScoreBoard[2], Model.ShipScoreBoard[3]  };
         }
 
         public int Start_Game()

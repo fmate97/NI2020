@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj": {}
+    "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj": {
+    "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
+        "projectUniqueName": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
         "projectName": "NI_torpedoTests",
-        "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
-        "packagesPath": "C:\\Users\\fmate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedoTests\\obj\\",
+        "projectPath": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedoTests\\NI_torpedoTests.csproj",
+        "packagesPath": "C:\\Users\\rozi1\\.nuget\\packages\\",
+        "outputPath": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedoTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fmate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rozi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
-                "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj"
+              "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
+                "projectPath": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj"
               }
             }
           }
@@ -77,21 +80,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
+    "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+        "projectUniqueName": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
         "projectName": "NI_torpedo",
-        "projectPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
-        "packagesPath": "C:\\Users\\fmate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fmate\\Downloads\\NI2020-main (2)\\NI2020-main\\NI_torpedo\\NI_torpedo\\obj\\",
+        "projectPath": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedo\\NI_torpedo.csproj",
+        "packagesPath": "C:\\Users\\rozi1\\.nuget\\packages\\",
+        "outputPath": "D:\\c#\\TÉNYLEG\\NI_torpedo\\NI_torpedo\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fmate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rozi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -138,7 +144,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

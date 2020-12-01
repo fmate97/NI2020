@@ -2,6 +2,8 @@
 using NI_torpedo.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +23,8 @@ namespace NI_torpedo.View
     {
         GameWindow_Player_viewmodel Player_viewmodel;
         ShipPut Ship= new ShipPut();
+        bool _exit = false;
+        bool _continue = false;
 
         public Player_GameWindow(string firstName, string secondName,
             List<Vector> firstPlayerShip, List<Vector> secondPlayerShip, 
@@ -32,7 +36,46 @@ namespace NI_torpedo.View
             Init_Game();
         }
 
+        public Player_GameWindow()
+        {
+            InitializeComponent();
+            _continue = true;
+            Player_viewmodel = new GameWindow_Player_viewmodel();
+            int help = Player_viewmodel.Restore_Game();
 
+            if ( help== 1)
+            {
+                Init_Game();
+                ScoreBoard();
+                
+                foreach (Vector tipp in Player_viewmodel.FirstPlayer_GoodTippGet())
+                {
+                    GameBoard_Setup(tipp, FirstPlayer_TippTable, Brushes.Green);
+                }
+                foreach (Vector tipp in Player_viewmodel.FirstPlayer_WrongTippGet())
+                {
+                    GameBoard_Setup(tipp, FirstPlayer_TippTable, Brushes.Red);
+                }
+                foreach (Vector tipp in Player_viewmodel.SecondPlayer_GoodTippGet())
+                {
+                    GameBoard_Setup(tipp, SecondPlayer_TippTable, Brushes.Green);
+                }
+                foreach (Vector tipp in Player_viewmodel.SecondPlayer_WrongTippGet())
+                {
+                    GameBoard_Setup(tipp, SecondPlayer_TippTable, Brushes.Red);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Az előző mentési fájl sérült!\nKezdjen új játékot!");
+                File.Delete(Globals.Restore_File_Name);
+                MainWindow newGame = new MainWindow();
+                newGame.Show();
+                _exit = true;
+                this.Show();
+            }
+        }
 
         private void Init_Game()
         {
@@ -40,7 +83,11 @@ namespace NI_torpedo.View
             SecondPlayer.Content = ($"Itt tippelj {Player_viewmodel.SecondName()}!");
             Ship.GameTable_Init(FirstPlayer_TippTable);
             Ship.GameTable_Init(SecondPlayer_TippTable);
-            Player_viewmodel.NextPlayerSet(Player_viewmodel.RandomStart());
+            if (!_continue)
+            {
+                Player_viewmodel.NextPlayerSet(Player_viewmodel.RandomStart());
+            }
+            
             NextPlayer(Player_viewmodel.NextPlayer());
             
         }
@@ -119,10 +166,13 @@ namespace NI_torpedo.View
         {
             if (help)
             {
-                if (Player_viewmodel.FirstPlayer_GoodTipp() == Player_viewmodel.CubeSize())
+                if (Player_viewmodel.FirstPlayer_GoodTippCount() == Player_viewmodel.CubeSize())
                 {
                     MessageBox.Show($"{Player_viewmodel.FirstName()} nyert!");
+                    Player_viewmodel.WinnerName(Player_viewmodel.FirstName());
+                    Player_viewmodel.Save();
                     MainWindow newGame = new MainWindow();
+                    _exit=true;
                     newGame.Show();
                     this.Close();
                     
@@ -130,10 +180,13 @@ namespace NI_torpedo.View
             }
             else
             {
-                if (Player_viewmodel.SecondPlayer_GoodTipp() == Player_viewmodel.CubeSize())
+                if (Player_viewmodel.SecondPlayer_GoodTippCount() == Player_viewmodel.CubeSize())
                 {
                     MessageBox.Show($"{Player_viewmodel.SecondName()} nyert!");
+                    Player_viewmodel.WinnerName(Player_viewmodel.SecondName());
+                    Player_viewmodel.Save();
                     MainWindow newGame = new MainWindow();
+                    _exit = true;
                     newGame.Show();
                     this.Close();
                 }
@@ -168,22 +221,42 @@ namespace NI_torpedo.View
             First_SecondPlayer_Hits.Content = Player_viewmodel.SecondPlayerHits();
             Second_FirstPlayer_Hits.Content = Player_viewmodel.FirstPlayerHits();
 
-            FirstShip2.Content = Player_viewmodel.FirstShip2();
-            SecondShip2.Content = Player_viewmodel.SecondShip2();
+            FirstShip2.Content = Player_viewmodel.FirstPlayer_ScoreBoard()[0];
+            SecondShip2.Content = Player_viewmodel.SecondPlayer_ScoreBoard()[0];
 
-            FirstShip3.Content = Player_viewmodel.FirstShip3();
-            SecondShip3.Content = Player_viewmodel.SecondShip3();
+            FirstShip3.Content = Player_viewmodel.FirstPlayer_ScoreBoard()[1];
+            SecondShip3.Content = Player_viewmodel.SecondPlayer_ScoreBoard()[1];
 
-            FirstShip4.Content = Player_viewmodel.FirstShip4();
-            SecondShip4.Content = Player_viewmodel.SecondShip4();
+            FirstShip4.Content = Player_viewmodel.FirstPlayer_ScoreBoard()[2];
+            SecondShip4.Content = Player_viewmodel.SecondPlayer_ScoreBoard()[2];
 
-            FirstShip5.Content = Player_viewmodel.FirstShip5();
-            SecondShip5.Content = Player_viewmodel.SecondShip5();
+            FirstShip5.Content = Player_viewmodel.FirstPlayer_ScoreBoard()[3];
+            SecondShip5.Content = Player_viewmodel.SecondPlayer_ScoreBoard()[3];
         }
+    
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Biztos ki akar lépni?", "Megerősítés", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                _exit = true;
+                this.Close();
+            }
+        }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!_exit)
+            {
+                MessageBox.Show("Kérem használja a \"Feladás\" gombot a kilépéshez!");
+                base.OnClosing(e);
+                e.Cancel = true;
+            }
+            else
+            {
+                base.OnClosing(e);
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -202,9 +275,18 @@ namespace NI_torpedo.View
             helpWindow.Show();
         }
 
-        private void Kesobb_Folyt_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void Later_Continue(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Biztos akarja később folytatni?", "Megerősítés", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                Player_viewmodel.Save_Game();
+                _exit = true;
+                MainWindow main = new MainWindow();
+                main.Show();
+                this.Close();
+            }
         }
     }
 }

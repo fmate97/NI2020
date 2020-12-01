@@ -9,18 +9,6 @@ namespace NI_torpedo.ViewModel
 {
     public class GameWindow_Al_model
     {
-        class HajoEgyseg
-        {
-            public Vector vector;
-            public bool talalt;
-
-            public HajoEgyseg(Vector vector, bool talalt)
-            {
-                this.vector = vector;
-                this.talalt = talalt;
-            }
-        }
-
         private Random _rnd = new Random();
         private DataSave_JSON _dataSave_JSON = new DataSave_JSON();
         private Restore_File _restor_file_JSON = new Restore_File();
@@ -36,10 +24,12 @@ namespace NI_torpedo.ViewModel
         private List<Vector> _al_rossz_tipp = new List<Vector>(), _al_jo_tipp = new List<Vector>();
         private int _korok_szam = 0, _sajat_talalat = 0, _ellenfel_talalat = 0;
 
-        private int _hajo2 = 0, _hajo3 = 0, _hajo4 = 0, _hajo5 = 0;
+        //private int _hajo2 = 0, _hajo3 = 0, _hajo4 = 0, _hajo5 = 0;
+        
         private int _hajo2_al = 0, _hajo3_al = 0, _hajo4_al = 0, _hajo5_al = 0;
-        private readonly List<List<HajoEgyseg>> _hajok = new List<List<HajoEgyseg>>();
+        private readonly List<List<ShipUnit>> _hajok = new List<List<ShipUnit>>();
 
+        public int[] ShipScoreBoard { get; set; } = new int[4];
         public string Player_Name
         {
             get { return _player_name; }
@@ -105,7 +95,7 @@ namespace NI_torpedo.ViewModel
             set { _ellenfel_talalat = value; }
         }
 
-        public int Hajo2
+       /* public int Hajo2
         {
             get { return _hajo2; }
         }
@@ -123,7 +113,7 @@ namespace NI_torpedo.ViewModel
         public int Hajo5
         {
             get { return _hajo5; }
-        }
+        }*/
 
         public int Sajat_Talalat
         {
@@ -181,7 +171,7 @@ namespace NI_torpedo.ViewModel
                     Player1_Name = _player_name,
                     Player2_Name = _al_name,
                     Winner_Name = _winner_name, 
-                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, _hajo2, _hajo3, _hajo4, _hajo5, _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
+                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, ShipScoreBoard[0], ShipScoreBoard[1], ShipScoreBoard[2], ShipScoreBoard[3], _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
                 });
 
                 jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
@@ -194,7 +184,7 @@ namespace NI_torpedo.ViewModel
                     Player1_Name = _player_name,
                     Player2_Name = _al_name, 
                     Winner_Name = _winner_name, 
-                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, _hajo2, _hajo3, _hajo4, _hajo5, _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
+                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, ShipScoreBoard[0], ShipScoreBoard[1], ShipScoreBoard[2], ShipScoreBoard[3], _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
                 });
 
                 jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
@@ -214,7 +204,7 @@ namespace NI_torpedo.ViewModel
                 _restor_file_JSON.Player1_Name = _al_name;
                 _restor_file_JSON.Player2_Name = _player_name;
                 _restor_file_JSON.Player_Number = _player_number;
-                _restor_file_JSON.Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, _hajo2, _hajo3, _hajo4, _hajo5, _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al };
+                _restor_file_JSON.Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, ShipScoreBoard[0], ShipScoreBoard[1], ShipScoreBoard[2], ShipScoreBoard[3], _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al };
                 _restor_file_JSON.Player1_Ship_Pos = _random_hajo_pos;
                 _restor_file_JSON.Player1_Good_Pos = _al_jo_tipp;
                 _restor_file_JSON.Player1_Bad_Pos = _al_rossz_tipp;
@@ -247,10 +237,10 @@ namespace NI_torpedo.ViewModel
                     _korok_szam = helper[0] - 1;
                     _sajat_talalat = helper[1];
                     _ellenfel_talalat = helper[2];
-                    _hajo2 = helper[3];
-                    _hajo3 = helper[4];
-                    _hajo4 = helper[5];
-                    _hajo5 = helper[6];
+                    ShipScoreBoard[0] = helper[3];
+                    ShipScoreBoard[1] = helper[4];
+                    ShipScoreBoard[2] = helper[5];
+                    ShipScoreBoard[3] = helper[6];
                     _hajo2_al = helper[7];
                     _hajo3_al = helper[8];
                     _hajo4_al = helper[9];
@@ -279,7 +269,7 @@ namespace NI_torpedo.ViewModel
                     {
                         if (_joTipp == _hajok[i][j].vector)
                         {
-                            _hajok[i][j].talalt = true;
+                            _hajok[i][j].hit = true;
                         }
                     }
                 }
@@ -374,11 +364,11 @@ namespace NI_torpedo.ViewModel
 
             for (int i = 0; i < _hajok_hossza.Length; i++)
             {
-                _hajok.Add(new List<HajoEgyseg>());
+                _hajok.Add(new List<ShipUnit>());
                 hajo_index++;
                 for (int j = 0; j < _hajok_hossza[i]; j++)
                 {
-                    _hajok[hajo_index - 1].Add(new HajoEgyseg(seged[index], false));
+                    _hajok[hajo_index - 1].Add(new ShipUnit(seged[index], false));
                     index++;
                 }
             }
@@ -476,7 +466,7 @@ namespace NI_torpedo.ViewModel
                 {
                     if (_hajok[i][j].vector == talalt)
                     {
-                        _hajok[i][j].talalt = true;
+                        _hajok[i][j].hit = true;
                         Elsullyedt(i);
                         break;
                     }
@@ -490,7 +480,7 @@ namespace NI_torpedo.ViewModel
             int db = 0;
             for (int j = 0; j < _hajok[i].Count; j++)
             {
-                if (_hajok[i][j].talalt == true)
+                if (_hajok[i][j].hit == true)
                 {
                     db++;
                 }
@@ -500,16 +490,16 @@ namespace NI_torpedo.ViewModel
                 switch (db)
                 {
                     case 2:
-                        _hajo2++;
+                        ShipScoreBoard[0]++;
                         break;
                     case 3:
-                        _hajo3++;
+                        ShipScoreBoard[1]++;
                         break;
                     case 4:
-                        _hajo4++;
+                        ShipScoreBoard[2]++;
                         break;
                     case 5:
-                        _hajo5++;
+                        ShipScoreBoard[3]++;
                         break;
                 }
             }

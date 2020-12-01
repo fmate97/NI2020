@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using NI_torpedo.Model;
 
@@ -81,10 +83,25 @@ namespace NI_torpedo.View
                 MessageBoxResult result = MessageBox.Show("Önnek van egy megkezdett játéka!\nAkarja folytatni?\nNem válasz esetén új játékot kezd és a régi mentés törlődik!", "Megerősítés", MessageBoxButton.YesNo);
                 if(result == MessageBoxResult.Yes)
                 {
-                    GameWindow window = new GameWindow(player_name_box.Text, 1);
-                    window.Show();
-                    _exit = true;
-                    this.Close();
+                     Restore_File _restor_file_JSON = new Restore_File();
+                    String jsonString = File.ReadAllText(Globals.Restore_File_Name);
+                    _restor_file_JSON = JsonSerializer.Deserialize<Restore_File>(jsonString);
+
+                    if (_restor_file_JSON.Player1_Name.Equals("Al"))
+                    {
+                        GameWindow window = new GameWindow(player_name_box.Text, 1);
+                        window.Show();
+                        _exit = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        Player_GameWindow player = new Player_GameWindow();
+                        player.Show();
+                        _exit = true;
+                        this.Close();
+                    }
+                    
                 }
                 else
                 {

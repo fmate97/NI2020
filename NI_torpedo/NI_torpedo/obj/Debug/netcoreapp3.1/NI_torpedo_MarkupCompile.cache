@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\fmate\Downloads\NI2020-main (2)\NI2020-main\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\
 NI_torpedo
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\fmate\Downloads\NI2020-main (2)\NI2020-main\NI_torpedo\NI_torpedo\App.xaml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\App.xaml
 6-1673441206
 
-13466088733
-193577161837
+14921103980
+193988228417
 View\GameWindow.xaml;View\HelpWindow.xaml;View\MainWindow.xaml;View\Player_GameWindow.xaml;View\ScoreBoardWindow.xaml;View\ShipPut.xaml;
 
-False
+True
 

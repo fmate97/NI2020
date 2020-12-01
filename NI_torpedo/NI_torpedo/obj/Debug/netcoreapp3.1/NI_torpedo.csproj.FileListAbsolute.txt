@@ -306,3 +306,34 @@ C:\Users\fmate\Downloads\NI2020-main (2)\NI2020-main\NI_torpedo\NI_torpedo\obj\D
 C:\Users\fmate\Downloads\NI2020-main (2)\NI2020-main\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\Player_GameWindow.baml
 C:\Users\fmate\Downloads\NI2020-main (2)\NI2020-main\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\ShipPut.baml
 C:\Users\fmate\Downloads\NI2020-main (2)\NI2020-main\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.csproj.CopyComplete
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\NI_torpedo.exe
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\NI_torpedo.deps.json
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\NI_torpedo.runtimeconfig.json
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\NI_torpedo.runtimeconfig.dev.json
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\NI_torpedo.dll
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\NI_torpedo.pdb
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.csprojAssemblyReference.cache
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\GameWindow.baml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\HelpWindow.baml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\MainWindow.baml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\ScoreBoardWindow.baml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\GameWindow.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\HelpWindow.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\MainWindow.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\Player_GameWindow.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\ScoreBoardWindow.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\ShipPut.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\App.g.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo_MarkupCompile.cache
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo_MarkupCompile.lref
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\Player_GameWindow.baml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\View\ShipPut.baml
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.g.resources
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.AssemblyInfoInputs.cache
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.AssemblyInfo.cs
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.csproj.CoreCompileInputs.cache
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.csproj.CopyComplete
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.dll
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.pdb
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Debug\netcoreapp3.1\NI_torpedo.genruntimeconfig.cache

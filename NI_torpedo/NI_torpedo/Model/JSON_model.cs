@@ -27,6 +27,7 @@ namespace NI_torpedo.Model
         public string Player2_Name { get; set; }
         public string Winner_Name { get; set; }
         public List<int> Scoreboard { get; set; }
+        
     }
 
     public class Restore_File
@@ -35,12 +36,16 @@ namespace NI_torpedo.Model
         public string Player2_Name { get; set; }
         public int Player_Number { get; set; }
         public List<int> Scoreboard { get; set; }
+        public int[] Player1_ScoreBoardShip { get; set; } = new int[4];
+        public int[] Player2_ScoreBoardShip { get; set; } = new int[4];
         public List<Vector> Player1_Ship_Pos { get; set; }
         public List<Vector> Player1_Good_Pos { get; set; }
         public List<Vector> Player1_Bad_Pos { get; set; }
         public List<Vector> Player2_Ship_Pos { get; set; }
         public List<Vector> Player2_Good_Pos { get; set; }
         public List<Vector> Player2_Bad_Pos { get; set; }
+        public List<List<ShipUnit>> Player1_ScoreShips { get; set; } 
+        public List<List<ShipUnit>> Player2_ScoreShips { get; set; } 
         public int CheckSum { get; set; }
 
         public int CheckSum_Calc()
