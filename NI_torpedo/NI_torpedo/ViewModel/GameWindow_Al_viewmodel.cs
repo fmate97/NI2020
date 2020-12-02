@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NI_torpedo.Model;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -107,9 +108,10 @@ namespace NI_torpedo.ViewModel
                 {
                     if (hajo_coord == eger_pos_vector)
                     {
-                        Model.Elem_Talalt(eger_pos_vector);
+                        Model.Al_ShipHit(eger_pos_vector);
                         Model.Player_Jo_Tipp.Add(eger_pos_vector);
                         Model.Sajat_Talalat++;
+
                         return Brushes.Green;
                     }
                 }
@@ -152,10 +154,20 @@ namespace NI_torpedo.ViewModel
             return Model.Player_Rossz_Tipp;
         }
 
+        public void PlayerShipNewList()
+        {
+           Model.Player_Ships.Add(new List<ShipUnit>());
+        }
+
+        public void PlayerShipAddVector(int s, Vector vector)
+        {
+            Model.Player_Ships[s].Add(new ShipUnit(vector, false));
+        }
+
         public int[] Eredmenyjelzo()
         {
             Model.Korok_Szama++;
-            return new int[] { Model.Korok_Szama, Model.Sajat_Talalat, Model.Ellenfel_Talalat, Model.ShipScoreBoard[0], Model.ShipScoreBoard[1], Model.ShipScoreBoard[2], Model.ShipScoreBoard[3]  };
+            return new int[] { Model.Korok_Szama, Model.Sajat_Talalat, Model.Ellenfel_Talalat, Model.Player_ShipScoreBoard[0], Model.Player_ShipScoreBoard[1], Model.Player_ShipScoreBoard[2], Model.Player_ShipScoreBoard[3]  };
         }
 
         public int Start_Game()
@@ -243,6 +255,7 @@ namespace NI_torpedo.ViewModel
                         return_value.Add((int)tipp.X);
                         return_value.Add((int)tipp.Y);
                         return_value.Add(0);
+                        Model.Player_ShipHit(tipp);
                         return return_value;
                     }
                 }
@@ -309,6 +322,7 @@ namespace NI_torpedo.ViewModel
                         return_value.Add((int)tipp.X);
                         return_value.Add((int)tipp.Y);
                         return_value.Add(0);
+                        Model.Player_ShipHit(tipp);
                         return return_value;
                     }
                 }

@@ -187,26 +187,13 @@ namespace NI_torpedo.Model
                 _restor_file_JSON.Player1_Ship_Pos = FirstPlayerShip;
                 _restor_file_JSON.Player1_Good_Pos = FirstPlayer_GoodTipp;
                 _restor_file_JSON.Player1_Bad_Pos = FirstPlayer_WrongTipp;
-                _restor_file_JSON.Player1_ScoreShips = new List<List<ShipUnit>>();
-
-                for (int i = 0; i < FirstShips.Count; i++)
-                {
-                    _restor_file_JSON.Player1_ScoreShips.Add(new List<ShipUnit>());
-                    _restor_file_JSON.Player1_ScoreShips[i] = FirstShips[i];
-                }
-                
+                _restor_file_JSON.Player1_ScoreShips = FirstShips;
                 
                 _restor_file_JSON.Player2_ScoreBoardShip = SecondPlayer_ScoreBoardShip;
                 _restor_file_JSON.Player2_Ship_Pos = SecondPlayerShip;
                 _restor_file_JSON.Player2_Good_Pos = SecondPlayer_GoodTipp;
                 _restor_file_JSON.Player2_Bad_Pos = SecondPlayer_WrongTipp;
-                _restor_file_JSON.Player2_ScoreShips = new List<List<ShipUnit>>();
-
-                for (int i = 0; i < SecondShips.Count; i++)
-                {
-                    _restor_file_JSON.Player2_ScoreShips.Add(new List<ShipUnit>());
-                    _restor_file_JSON.Player2_ScoreShips[i] = SecondShips[i];
-                }
+                _restor_file_JSON.Player2_ScoreShips = SecondShips;
 
                 _restor_file_JSON.CheckSum = _restor_file_JSON.CheckSum_Calc();
 
@@ -232,10 +219,11 @@ namespace NI_torpedo.Model
                 string jsonString = File.ReadAllText(Globals.Restore_File_Name);
                 _restor_file_JSON = JsonSerializer.Deserialize<Restore_File>(jsonString);
 
-                /*if (_restor_file_JSON.CheckSum != _restor_file_JSON.CheckSum_Calc())
+               /* if (_restor_file_JSON.CheckSum != _restor_file_JSON.CheckSum_Calc())
                 {
                     return -1;
                 }*/
+
                 FirstName = _restor_file_JSON.Player1_Name;
                 SecondName = _restor_file_JSON.Player2_Name;
 
@@ -243,26 +231,13 @@ namespace NI_torpedo.Model
                 FirstPlayer_GoodTipp = _restor_file_JSON.Player1_Good_Pos;
                 FirstPlayer_WrongTipp = _restor_file_JSON.Player1_Bad_Pos;
                 FirstPlayer_ScoreBoardShip = _restor_file_JSON.Player1_ScoreBoardShip;
-                //FirstShips = _restor_file_JSON.Player1_ScoreShips;
-
-                for (int i = 0; i < _restor_file_JSON.Player1_ScoreShips.Count; i++)
-                {
-                    FirstShips.Add(new List<ShipUnit>());
-                    FirstShips[i] = _restor_file_JSON.Player1_ScoreShips[i];
-                }
-
+                FirstShips = _restor_file_JSON.Player1_ScoreShips;
 
                 SecondPlayerShip = _restor_file_JSON.Player2_Ship_Pos;
                 SecondPlayer_GoodTipp = _restor_file_JSON.Player2_Good_Pos;
                 SecondPlayer_WrongTipp = _restor_file_JSON.Player2_Bad_Pos;
-                //SecondShips = _restor_file_JSON.Player2_ScoreShips;
                 SecondPlayer_ScoreBoardShip = _restor_file_JSON.Player2_ScoreBoardShip;
-
-                for (int i = 0; i < _restor_file_JSON.Player2_ScoreShips.Count; i++)
-                {
-                    SecondShips.Add(new List<ShipUnit>());
-                    SecondShips[i] = _restor_file_JSON.Player2_ScoreShips[i];
-                }
+                SecondShips = _restor_file_JSON.Player2_ScoreShips;
 
                 List<int> helper = _restor_file_JSON.Scoreboard;
                 {
@@ -297,9 +272,9 @@ namespace NI_torpedo.Model
                     Player1_Name = FirstName,
                     Player2_Name = SecondName,
                     Winner_Name = WinnerName,
-                    Scoreboard = new List<int>() { NumberOfRounds, NumberOfFirstPlayerHits, NumberOfSecondPlayerHits,
-                        FirstPlayer_ScoreBoardShip[0], FirstPlayer_ScoreBoardShip[1],FirstPlayer_ScoreBoardShip[2],FirstPlayer_ScoreBoardShip[3],
-                        SecondPlayer_ScoreBoardShip[0],  SecondPlayer_ScoreBoardShip[1],  SecondPlayer_ScoreBoardShip[2],  SecondPlayer_ScoreBoardShip[3]}
+                    Scoreboard = new List<int>() { NumberOfRounds, NumberOfFirstPlayerHits, NumberOfSecondPlayerHits},
+                    Player1_ShipScore = FirstPlayer_ScoreBoardShip,
+                    Player2_ShipScore = SecondPlayer_ScoreBoardShip
                 }) ;
 
                 jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
@@ -313,9 +288,9 @@ namespace NI_torpedo.Model
                     Player1_Name = FirstName,
                     Player2_Name = SecondName,
                     Winner_Name = WinnerName,
-                    Scoreboard = new List<int>() { NumberOfRounds, NumberOfFirstPlayerHits, NumberOfSecondPlayerHits,
-                        FirstPlayer_ScoreBoardShip[0], FirstPlayer_ScoreBoardShip[1],FirstPlayer_ScoreBoardShip[2],FirstPlayer_ScoreBoardShip[3],
-                        SecondPlayer_ScoreBoardShip[0],  SecondPlayer_ScoreBoardShip[1],  SecondPlayer_ScoreBoardShip[2],  SecondPlayer_ScoreBoardShip[3]}
+                    Scoreboard = new List<int>() { NumberOfRounds, NumberOfFirstPlayerHits, NumberOfSecondPlayerHits},
+                    Player1_ShipScore = FirstPlayer_ScoreBoardShip,
+                    Player2_ShipScore = SecondPlayer_ScoreBoardShip
                 });
 
                 jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);

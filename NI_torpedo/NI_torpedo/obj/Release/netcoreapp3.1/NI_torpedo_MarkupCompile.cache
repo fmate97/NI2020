@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\c#\Új\NI_torpedo\NI_torpedo\obj\Release\netcoreapp3.1\
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\obj\Release\netcoreapp3.1\
 NI_torpedo
 none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1
-D:\c#\Új\NI_torpedo\NI_torpedo\App.xaml
-4114941835
+D:\c#\TÉNYLEG\NI_torpedo\NI_torpedo\App.xaml
+6-1673441206
 
-61913885169
-1921654412462
-GameWindow.xaml;HelpWindow.xaml;MainWindow.xaml;NameWindow.xaml;
+14921103980
+193988228417
+View\GameWindow.xaml;View\HelpWindow.xaml;View\MainWindow.xaml;View\Player_GameWindow.xaml;View\ScoreBoardWindow.xaml;View\ShipPut.xaml;
 
 True
 

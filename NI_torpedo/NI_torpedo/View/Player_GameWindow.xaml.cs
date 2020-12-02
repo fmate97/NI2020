@@ -107,7 +107,6 @@ namespace NI_torpedo.View
                 {
                     GameBoard_Setup(eger_pos_vector, FirstPlayer_TippTable, color);
                     Player_viewmodel.NextPlayerSet(false); 
-                    Player_viewmodel.NextPlayerSet(false);
                     NextPlayer(Player_viewmodel.NextPlayer());
                     ScoreBoard();
                     GameEnd(true);
@@ -241,6 +240,10 @@ namespace NI_torpedo.View
             if (result == MessageBoxResult.Yes)
             {
                 _exit = true;
+                this.Close();
+                _exit = true;
+                MainWindow main = new MainWindow();
+                main.Show();
                 this.Close();
             }
         }

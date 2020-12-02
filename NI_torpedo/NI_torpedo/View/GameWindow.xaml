@@ -17,9 +17,9 @@
             <Label Margin="15, 0, 0, 0" Foreground="White"  Content="Shift + F2: Al hajóinak megmutatása" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label x:Name="nevLabel" HorizontalAlignment="Left" FontWeight="Bold" Foreground="Red"/>
-            <Label x:Name="kovetkezoPlayer_label" Content="Következő játékos:" Margin="250, 0, 0, 0" Visibility="Hidden"/>
-            <Label x:Name="kovetkezoPlayer" FontWeight="Bold"/>
+            <Label x:Name="nevLabel" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FF170303" FontSize="14"/>
+            <Label x:Name="kovetkezoPlayer_label" Content="Következő játékos:" Margin="250, 0, 0, 0" Visibility="Hidden" FontSize="16" FontWeight="Bold"/>
+            <Label x:Name="kovetkezoPlayer" FontWeight="Bold" FontSize="16"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Al játéktábla:" Margin="25, 0, 0, 0" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="14"/>
@@ -56,37 +56,37 @@
             </StackPanel>
             <StackPanel x:Name="eredmenyjelzo" Orientation="Vertical" Visibility="Collapsed" Margin="10, 0, 0, 0">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Körök száma: "/>
-                    <Label Content="0" x:Name="korok_szama" Margin="12, 0, 0, 0"/>
+                    <Label Content="Körök száma: " FontWeight="Bold" FontSize="14" />
+                    <Label Content="0" x:Name="korok_szama" Margin="12, 0, 0, 0"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Saját találatok: "/>
-                    <Label Content="0" x:Name="sajat_talalatok" Margin="5, 0, 0, 0"/>
+                    <Label Content="Saját találatok: " FontWeight="Bold" FontSize="14"/>
+                    <Label Content="0" x:Name="sajat_talalatok" Margin="5, 0, 0, 0"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Ellenfél találatai:"/>
-                    <Label Content="0" x:Name="ellenfel_talalatai"/>
+                    <Label Content="Ellenfél találatai:"  FontWeight="Bold" FontSize="14"/>
+                    <Label Content="0" x:Name="ellenfel_talalatai"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
-                <Label Content="Elsülyesztett:" />
+                <Label Content="Elsülyesztett:"  FontWeight="Bold" FontSize="14"/>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="2-es hajók:"/>
-                    <Label x:Name="hajo2" Content="0"/>
-                    <Label Content="/ 4"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label  Content="3-as hajók:"/>
-                    <Label x:Name="hajo3" Content="0"/>
-                    <Label Content="/ 4"/>
+                    <Label  Content="2-es hajók:"  FontWeight="Bold" FontSize="14"/>
+                    <Label x:Name="hajo2" Content="0"  FontWeight="Bold" FontSize="14"/>
+                    <Label Content="/ 4"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="4-es hajók:"/>
-                    <Label x:Name="hajo4" Content="0"/>
-                    <Label Content="/ 2"/>
+                    <Label  Content="3-as hajók:"  FontWeight="Bold" FontSize="14"/>
+                    <Label x:Name="hajo3" Content="0"  FontWeight="Bold" FontSize="14"/>
+                    <Label Content="/ 4"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label  Content="5-ös hajók:"/>
-                    <Label x:Name="hajo5" Content="0"/>
-                    <Label Content="/ 1"/>
+                    <Label  Content="4-es hajók:"  FontWeight="Bold" FontSize="14"/>
+                    <Label x:Name="hajo4" Content="0"  FontWeight="Bold" FontSize="14"/>
+                    <Label Content="/ 2"  FontWeight="Bold" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Content="5-ös hajók:"  FontWeight="Bold" FontSize="14"/>
+                    <Label x:Name="hajo5" Content="0"  FontWeight="Bold" FontSize="14"/>
+                    <Label Content="/ 1"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

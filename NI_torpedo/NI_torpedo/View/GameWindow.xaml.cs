@@ -19,6 +19,7 @@ namespace NI_torpedo.View
         private readonly GameWindow_Al_viewmodel _viewModel = new GameWindow_Al_viewmodel();
         private Canvas _hajo_klikk;
         private Dictionary<Canvas, Visibility> _hajok_neve = new Dictionary<Canvas, Visibility>();
+        int _shipIndex = 0;
 
         public GameWindow(string nev)
         {
@@ -324,6 +325,7 @@ namespace NI_torpedo.View
 
         private void Sajat_Jatektabla_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
             try
             {
                 if (_hajo_klikk != null && !_viewModel.Mentett_Jatek() && _hajok_neve[_hajo_klikk] == Visibility.Visible)
@@ -333,17 +335,21 @@ namespace NI_torpedo.View
                     Vector eger_pos_vector = new Vector(_viewModel.Coord_Conv(eger_pos.X) - 1, _viewModel.Coord_Conv(eger_pos.Y) - 1);
                     if (_viewModel.Hajo_Lehelyezheto(eger_pos_vector, length))
                     {
+                        _viewModel.PlayerShipNewList();
+                        _shipIndex++;
                         for (int i = 0; i < length; i++)
                         {
                             if (_viewModel.Fuggoleges_Get())
                             {
                                 Jatektabla_Setup(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i), sajat_jatektabla, Brushes.Blue);
                                 _viewModel.Player_Hajo_Add(new Vector(eger_pos_vector.X, eger_pos_vector.Y + i));
+                                _viewModel.PlayerShipAddVector(_shipIndex - 1, new Vector(eger_pos_vector.X, eger_pos_vector.Y + i));
                             }
                             else
                             {
                                 Jatektabla_Setup(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y), sajat_jatektabla, Brushes.Blue);
                                 _viewModel.Player_Hajo_Add(new Vector(eger_pos_vector.X + i, eger_pos_vector.Y));
+                                _viewModel.PlayerShipAddVector(_shipIndex - 1, new Vector(eger_pos_vector.X + i, eger_pos_vector.Y));
                             }
                         }
                         List<Canvas> keys = new List<Canvas>(_hajok_neve.Keys);

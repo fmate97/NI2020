@@ -67,21 +67,25 @@ namespace NI_torpedo.View
             player1_name.Content = _dataSave_JSON_helper.Player1_Name;
             player2_name.Content = _dataSave_JSON_helper.Player2_Name;
             nyertes_name.Content = _dataSave_JSON_helper.Winner_Name;
+
             player1_hajoi.Content = player1_name.Content + " elsülyesztett hajói:  ";
             player2_hajoi.Content = player2_name.Content + " elsülyesztett hajói:  ";
             player1_talalatai.Content = player1_name.Content + " találatai: ";
             player2_talalatai.Content = player2_name.Content + " találatai: ";
+
             korok_szam.Content = _dataSave_JSON_helper.Scoreboard[0];
             player1_talalat.Content = _dataSave_JSON_helper.Scoreboard[1];
             player2_talalat.Content = _dataSave_JSON_helper.Scoreboard[2];
-            player1_hajo2.Content = _dataSave_JSON_helper.Scoreboard[3];
-            player1_hajo3.Content = _dataSave_JSON_helper.Scoreboard[4];
-            player1_hajo4.Content = _dataSave_JSON_helper.Scoreboard[5];
-            player1_hajo5.Content = _dataSave_JSON_helper.Scoreboard[6];
-            player2_hajo2.Content = _dataSave_JSON_helper.Scoreboard[7];
-            player2_hajo3.Content = _dataSave_JSON_helper.Scoreboard[8];
-            player2_hajo4.Content = _dataSave_JSON_helper.Scoreboard[9];
-            player2_hajo5.Content = _dataSave_JSON_helper.Scoreboard[10];
+
+            player1_hajo2.Content = _dataSave_JSON_helper.Player1_ShipScore[0];
+            player1_hajo3.Content = _dataSave_JSON_helper.Player1_ShipScore[1];
+            player1_hajo4.Content = _dataSave_JSON_helper.Player1_ShipScore[2];
+            player1_hajo5.Content = _dataSave_JSON_helper.Player1_ShipScore[3];
+
+            player2_hajo2.Content = _dataSave_JSON_helper.Player2_ShipScore[0];
+            player2_hajo3.Content = _dataSave_JSON_helper.Player2_ShipScore[1];
+            player2_hajo4.Content = _dataSave_JSON_helper.Player2_ShipScore[2];
+            player2_hajo5.Content = _dataSave_JSON_helper.Player2_ShipScore[3];
             Button_Enabled();
         }
 

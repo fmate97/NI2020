@@ -26,10 +26,14 @@ namespace NI_torpedo.ViewModel
 
         //private int _hajo2 = 0, _hajo3 = 0, _hajo4 = 0, _hajo5 = 0;
         
-        private int _hajo2_al = 0, _hajo3_al = 0, _hajo4_al = 0, _hajo5_al = 0;
-        private readonly List<List<ShipUnit>> _hajok = new List<List<ShipUnit>>();
+        //private int _hajo2_al = 0, _hajo3_al = 0, _hajo4_al = 0, _hajo5_al = 0;
 
-        public int[] ShipScoreBoard { get; set; } = new int[4];
+        public int[] Player_ShipScoreBoard { get; set; } = new int[4];
+        public int[] Al_ShipScoreBoard { get; set; } = new int[4];
+
+        public List<List<ShipUnit>> Al_Ships { get; set; } = new List<List<ShipUnit>>();
+        public List<List<ShipUnit>> Player_Ships { get; set; } = new List<List<ShipUnit>>();
+
         public string Player_Name
         {
             get { return _player_name; }
@@ -167,12 +171,15 @@ namespace NI_torpedo.ViewModel
                 _dataSave_JSON = JsonSerializer.Deserialize<DataSave_JSON>(jsonString);
 
                 _dataSave_JSON.Data_number++;
-                _dataSave_JSON.Data.Add(new DataSave_JSON_helper() {
+                _dataSave_JSON.Data.Add(new DataSave_JSON_helper()
+                {
                     Player1_Name = _player_name,
                     Player2_Name = _al_name,
-                    Winner_Name = _winner_name, 
-                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, ShipScoreBoard[0], ShipScoreBoard[1], ShipScoreBoard[2], ShipScoreBoard[3], _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
-                });
+                    Winner_Name = _winner_name,
+                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat },
+                    Player1_ShipScore = Player_ShipScoreBoard,
+                    Player2_ShipScore=Al_ShipScoreBoard
+                }) ;
 
                 jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
                 File.WriteAllText(Globals.Save_File_Name, jsonString);
@@ -184,7 +191,9 @@ namespace NI_torpedo.ViewModel
                     Player1_Name = _player_name,
                     Player2_Name = _al_name, 
                     Winner_Name = _winner_name, 
-                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, ShipScoreBoard[0], ShipScoreBoard[1], ShipScoreBoard[2], ShipScoreBoard[3], _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al }
+                    Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat},
+                    Player1_ShipScore = Player_ShipScoreBoard,
+                    Player2_ShipScore = Al_ShipScoreBoard
                 });
 
                 jsonString = JsonSerializer.Serialize<DataSave_JSON>(_dataSave_JSON);
@@ -204,13 +213,20 @@ namespace NI_torpedo.ViewModel
                 _restor_file_JSON.Player1_Name = _al_name;
                 _restor_file_JSON.Player2_Name = _player_name;
                 _restor_file_JSON.Player_Number = _player_number;
-                _restor_file_JSON.Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat, ShipScoreBoard[0], ShipScoreBoard[1], ShipScoreBoard[2], ShipScoreBoard[3], _hajo2_al, _hajo3_al, _hajo4_al, _hajo5_al };
+                _restor_file_JSON.Scoreboard = new List<int>() { _korok_szam, _sajat_talalat, _ellenfel_talalat};
+
+                _restor_file_JSON.Player1_ScoreBoardShip = Al_ShipScoreBoard;
                 _restor_file_JSON.Player1_Ship_Pos = _random_hajo_pos;
                 _restor_file_JSON.Player1_Good_Pos = _al_jo_tipp;
                 _restor_file_JSON.Player1_Bad_Pos = _al_rossz_tipp;
+                _restor_file_JSON.Player1_ScoreShips = Al_Ships;
+
+                _restor_file_JSON.Player2_ScoreBoardShip = Player_ShipScoreBoard;
                 _restor_file_JSON.Player2_Ship_Pos = _player_hajo_pos;
                 _restor_file_JSON.Player2_Good_Pos = _player_jo_tipp;
                 _restor_file_JSON.Player2_Bad_Pos = _player_rossz_tipp;
+                _restor_file_JSON.Player2_ScoreShips = Player_Ships;
+
                 _restor_file_JSON.CheckSum = _restor_file_JSON.CheckSum_Calc();
 
                 String jsonString = JsonSerializer.Serialize<Restore_File>(_restor_file_JSON);
@@ -237,44 +253,43 @@ namespace NI_torpedo.ViewModel
                     _korok_szam = helper[0] - 1;
                     _sajat_talalat = helper[1];
                     _ellenfel_talalat = helper[2];
-                    ShipScoreBoard[0] = helper[3];
-                    ShipScoreBoard[1] = helper[4];
-                    ShipScoreBoard[2] = helper[5];
-                    ShipScoreBoard[3] = helper[6];
-                    _hajo2_al = helper[7];
-                    _hajo3_al = helper[8];
-                    _hajo4_al = helper[9];
-                    _hajo5_al = helper[10];
                 }
+
+                Al_ShipScoreBoard = _restor_file_JSON.Player1_ScoreBoardShip;
                 _random_hajo_pos = _restor_file_JSON.Player1_Ship_Pos;
                 _al_jo_tipp = _restor_file_JSON.Player1_Good_Pos;
                 _al_rossz_tipp = _restor_file_JSON.Player1_Bad_Pos;
+                Al_Ships = _restor_file_JSON.Player1_ScoreShips;
+
+                Player_ShipScoreBoard = _restor_file_JSON.Player2_ScoreBoardShip;
                 _player_hajo_pos = _restor_file_JSON.Player2_Ship_Pos;
                 _player_jo_tipp = _restor_file_JSON.Player2_Good_Pos;
                 _player_rossz_tipp = _restor_file_JSON.Player2_Bad_Pos;
+                Player_Ships = _restor_file_JSON.Player2_ScoreShips;
+                
 
-                Ellenfel_Hajo_Mentes();
-                HajoRestore();
+                //Ellenfel_Hajo_Mentes();
+                //HajoRestore();
             }
             return 0;
         }
 
-        public void HajoRestore()
+        /*public void HajoRestore()
         {
             foreach (var _joTipp in Player_Jo_Tipp)
             {
-                for (int i = 0; i < _hajok.Count; i++)
+                for (int i = 0; i < Ships.Count; i++)
                 {
-                    for (int j = 0; j < _hajok[i].Count; j++)
+                    for (int j = 0; j < Ships[i].Count; j++)
                     {
-                        if (_joTipp == _hajok[i][j].vector)
+                        if (_joTipp == Ships[i][j].vector)
                         {
-                            _hajok[i][j].hit = true;
+                            Ships[i][j].hit = true;
                         }
                     }
                 }
             }
-        }
+        }*/
 
         public int Coord_Conv(double number, int seged)
         {
@@ -364,11 +379,11 @@ namespace NI_torpedo.ViewModel
 
             for (int i = 0; i < _hajok_hossza.Length; i++)
             {
-                _hajok.Add(new List<ShipUnit>());
+                Al_Ships.Add(new List<ShipUnit>());
                 hajo_index++;
                 for (int j = 0; j < _hajok_hossza[i]; j++)
                 {
-                    _hajok[hajo_index - 1].Add(new ShipUnit(seged[index], false));
+                    Al_Ships[hajo_index - 1].Add(new ShipUnit(seged[index], false));
                     index++;
                 }
             }
@@ -458,16 +473,16 @@ namespace NI_torpedo.ViewModel
             return return_value;
         }
 
-        public void Elem_Talalt(Vector talalt)
+        public void Al_ShipHit(Vector hit)
         {
-            for (int i = 0; i < _hajok.Count; i++)
+            for (int i = 0; i < Al_Ships.Count; i++)
             {
-                for (int j = 0; j < _hajok[i].Count; j++)
+                for (int j = 0; j < Al_Ships[i].Count; j++)
                 {
-                    if (_hajok[i][j].vector == talalt)
+                    if (Al_Ships[i][j].vector == hit)
                     {
-                        _hajok[i][j].hit = true;
-                        Elsullyedt(i);
+                        Al_Ships[i][j].hit = true;
+                        Al_Sank(i);
                         break;
                     }
                 }
@@ -475,31 +490,78 @@ namespace NI_torpedo.ViewModel
 
         }
 
-        private void Elsullyedt(int i)
+        private void Al_Sank(int i)
         {
             int db = 0;
-            for (int j = 0; j < _hajok[i].Count; j++)
+            for (int j = 0; j < Al_Ships[i].Count; j++)
             {
-                if (_hajok[i][j].hit == true)
+                if (Al_Ships[i][j].hit == true)
                 {
                     db++;
                 }
             }
-            if (_hajok[i].Count == db)
+            if (Al_Ships[i].Count == db)
             {
                 switch (db)
                 {
                     case 2:
-                        ShipScoreBoard[0]++;
+                        Player_ShipScoreBoard[0]++;
                         break;
                     case 3:
-                        ShipScoreBoard[1]++;
+                        Player_ShipScoreBoard[1]++;
                         break;
                     case 4:
-                        ShipScoreBoard[2]++;
+                        Player_ShipScoreBoard[2]++;
                         break;
                     case 5:
-                        ShipScoreBoard[3]++;
+                        Player_ShipScoreBoard[3]++;
+                        break;
+                }
+            }
+        }
+
+        public void Player_ShipHit(Vector hit)
+        {
+            for (int i = 0; i < Player_Ships.Count; i++)
+            {
+                for (int j = 0; j < Player_Ships[i].Count; j++)
+                {
+                    if (Player_Ships[i][j].vector == hit)
+                    {
+                        Player_Ships[i][j].hit = true;
+                        Player_Sank(i);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        private void Player_Sank(int i)
+        {
+            int db = 0;
+            for (int j = 0; j < Player_Ships[i].Count; j++)
+            {
+                if (Player_Ships[i][j].hit == true)
+                {
+                    db++;
+                }
+            }
+            if (Player_Ships[i].Count == db)
+            {
+                switch (db)
+                {
+                    case 2:
+                        Al_ShipScoreBoard[0]++;
+                        break;
+                    case 3:
+                        Al_ShipScoreBoard[1]++;
+                        break;
+                    case 4:
+                        Al_ShipScoreBoard[2]++;
+                        break;
+                    case 5:
+                        Al_ShipScoreBoard[3]++;
                         break;
                 }
             }
