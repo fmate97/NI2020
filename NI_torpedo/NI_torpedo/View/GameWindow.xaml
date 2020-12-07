@@ -64,7 +64,7 @@
                     <Label Content="0" x:Name="sajat_talalatok" Margin="5, 0, 0, 0"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Ellenfél találatai:"  FontWeight="Bold" FontSize="14"/>
+                    <Label Content="Ellenfél találatai:"  FontWeight="Bold" FontSize="14" Height="63"/>
                     <Label Content="0" x:Name="ellenfel_talalatai"  FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <Label Content="Elsülyesztett:"  FontWeight="Bold" FontSize="14"/>

@@ -46,7 +46,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="3-as hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
-                    <Label x:Name="FirstShip3" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label x:Name="FirstShip3" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                     <Label Content="/ 4" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -56,7 +56,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="5-ös hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
-                    <Label x:Name="FirstShip5" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label x:Name="FirstShip5" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                     <Label Content="/ 1" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
@@ -83,17 +83,17 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="3-as hajók:" FontWeight="Bold" FontStyle="Normal" Height="28" FontSize="14"/>
-                    <Label x:Name="SecondShip3" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label x:Name="SecondShip3" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                     <Label Content="/ 4" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="4-es hajók:" FontWeight="Bold" FontStyle="Normal" Height="28" FontSize="14"/>
-                    <Label x:Name="SecondShip4" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label x:Name="SecondShip4" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                     <Label Content="/ 2" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label  Content="5-ös hajók:" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
-                    <Label x:Name="SecondShip5" Content="0" FontWeight="Bold" FontStyle="Normal"/>
+                    <Label x:Name="SecondShip5" Content="0" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                     <Label Content="/ 1" FontWeight="Bold" FontStyle="Normal" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
